@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
         marginTop: 8,
         color: '#2699FB',
     },
+    noteText: {
+        fontSize: 18,
+        color: '#2699FB',
+    },
     textInput:{
         height: 46, 
         marginVertical: 9,
@@ -26,7 +30,8 @@ const styles = StyleSheet.create({
         color: '#2699FB',
         borderColor: '#2699FB', 
         borderWidth: 1
-    }
+    },
+    
 })
 
 export default styles;
