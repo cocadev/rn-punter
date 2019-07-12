@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     view: {
-        marginTop: 22,
+        margin: 22,
     },
     headText: {
         fontSize: 16,

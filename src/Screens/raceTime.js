@@ -39,7 +39,7 @@ export default class RaceTime extends Component {
 
     return (
       <View style={styles.container}>
-        
+
         <Header
           title={'Race Time'}
           rightElement={(
@@ -68,7 +68,7 @@ export default class RaceTime extends Component {
             <ToggleSwitch
               isOn={this.state.isOn}
               onColor='#2699FB'
-              offColor='grey'
+              offColor='#EBEEF1'
               size='small'
               onToggle={(isOn) => this.setState({ isOn: !this.state.isOn })}
             />
