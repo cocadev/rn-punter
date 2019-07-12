@@ -9,7 +9,7 @@ export default class Header extends Component {
             <View style={style.container}>
                 <MaterialCommunityIcons name="arrow-left" color={'#fff'} size={28} />
                 <Text style={styles.headText}>{this.props.title}</Text>
-                <MaterialCommunityIcons name="check" color={'#fff'} size={28} />
+                {this.props.rightElement}
             </View>
         );
     }

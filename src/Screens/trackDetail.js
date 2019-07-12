@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import Header from '../Components/Header';
 import styles from '../Config/styles';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class TrackDetail extends Component {
 
@@ -15,7 +16,15 @@ export default class TrackDetail extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title={'Track Details'} />
+        <Header
+          title={'Track Details'}
+          rightElement={(
+            <MaterialCommunityIcons
+              name="check"
+              color={'#fff'}
+              size={28}
+            />)}
+        />
         <View style={styles.view}>
           <Text style={styles.titleText}>Meetings</Text>
           <TextInput
