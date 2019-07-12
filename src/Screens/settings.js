@@ -11,12 +11,33 @@ export default class Settings extends Component {
           <Text style={style.text}>{'SETTINGS'}</Text>
           <Text>{''}</Text>
         </View>
+        <View style={[style.item, { marginTop:25}]}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <MaterialCommunityIcons name="email" color={'#2699FB'} size={22} />
+            <Text style={[style.title, { marginLeft: 16}]}>Email</Text>
+          </View>
+          <Text style={style.title2}>paul, info</Text>
+        </View>
         <View style={style.item}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <MaterialCommunityIcons name="chevron-down" color={'#2699FB'} size={24} />
-            <Text>Email</Text>
+            <MaterialCommunityIcons name="lock" color={'#2699FB'} size={22} />
+            <Text style={[style.title, { marginLeft: 16}]}>Password</Text>
           </View>
-          <Text>paul, info</Text>
+          <Text style={[style.title2, { fontSize: 8, letterSpacing: 2}]}>●●●●●●●</Text>
+        </View>
+        <View style={style.item}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <MaterialCommunityIcons name="autorenew" color={'#2699FB'} size={22} />
+            <Text style={[style.title, { marginLeft: 16}]}>Check Update</Text>
+          </View>
+          <Text style={style.title2}>v 1.0.2 (14)</Text>
+        </View>
+        <View style={style.item}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <MaterialCommunityIcons name="help-circle" color={'#2699FB'} size={22} />
+            <Text style={[style.title, { marginLeft: 16}]}>Help</Text>
+          </View>
+          <Text style={style.title2}>Call us +61 3 9759 6266</Text>
         </View>
       </View>
     );
@@ -37,13 +58,24 @@ const style = StyleSheet.create({
     fontWeight: '600',
     marginLeft: -24
   },
+  title: {
+    color: '#2699FB',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  title2: {
+    color: '#7FC4FD',
+    fontSize: 16,
+    fontWeight: '400',
+  },
   item: {
+    height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal:12,
     marginTop:10,
-    paddingHorizontal:15,
+    paddingHorizontal:18,
     backgroundColor: '#f1f9ff'
   }
 })
