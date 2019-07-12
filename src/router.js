@@ -81,6 +81,7 @@ export default class Router extends PureComponent {
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : null}
                 style={{ flex: 1 }}>
+                <StatusBar backgroundColor="red" barStyle="light-content" />
                 {fontLoaded == true ? (
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
