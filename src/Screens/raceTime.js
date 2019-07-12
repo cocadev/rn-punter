@@ -5,9 +5,16 @@ import Dropdown from '../Components/Dropdown';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ModalDropdown from 'react-native-modal-dropdown';
 
-const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+const options = [
+  'Cancel',
+  '30 min',
+  '1 hour',
+  '2 hours',
+  '3 hours',
+]
 
 export default class RaceTime extends Component {
 
@@ -16,10 +23,20 @@ export default class RaceTime extends Component {
     track: 'GOOD',
     rail: 'TRUE',
     race: '3',
-    isOn: true
+    isOn: true,
+    selected: 1,
+  }
+
+  showActionSheet = () => this.actionSheet.show()
+  getActionSheetRef = ref => (this.actionSheet = ref)
+  handlePress = index => { 
+   index > 0 && this.setState({ selected: index })
   }
 
   render() {
+
+    const { selected } = this.state;
+
     return (
       <View style={styles.container}>
         <Header
@@ -32,24 +49,20 @@ export default class RaceTime extends Component {
             />)}
         />
 
-        <ModalDropdown style={styles.dropdown_1}
-          options={DEMO_OPTIONS_1}
-        />
-
         <View style={[styles.view, { marginHorizontal: 12 }]}>
 
           <View style={style.filling}>
             <Text style={{ color: '#2699FB', fontWeight: '600' }}>Auto-filling</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ color: '#2699FB' }}>Every</Text>
-              <View style={style.drop}>
-                <Text style={{ color: '#2699FB' }}>30min</Text>
+              <TouchableOpacity onPress={this.showActionSheet} style={style.drop}>
+                <Text style={{ color: '#2699FB' }}>{options[selected]}</Text>
                 <MaterialCommunityIcons
                   name="chevron-down"
                   color={'#2699FB'}
                   size={24}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
             <ToggleSwitch
               isOn={this.state.isOn}
@@ -91,6 +104,15 @@ export default class RaceTime extends Component {
           </View>
 
         </View>
+
+        <ActionSheet
+          ref={this.getActionSheetRef}
+          options={options}
+          cancelButtonIndex={0}
+          destructiveButtonIndex={selected}
+          onPress={this.handlePress}
+        />
+
       </View>
     );
   }
