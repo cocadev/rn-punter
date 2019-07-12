@@ -9,6 +9,7 @@ import TrackDetail from '../Screens/trackDetail';
 import Settings from '../Screens/settings';
 
 const AUTH = [
+  { key: 'races',          component: Races},
   { key: 'racetime',       component: RaceTime},
   { key: 'email',          component: Email},
   { key: 'password',  component: Password},
@@ -18,7 +19,6 @@ const AUTH = [
 
 const MAIN = [
   { key: 'trackdetail',    component: TrackDetail},
-  { key: 'races',          component: Races},
   { key: 'settings',       component: Settings},
 ]
 

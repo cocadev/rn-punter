@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     view: {
-        margin: 22
+        marginTop: 22,
     },
     headText: {
         fontSize: 16,
@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
         borderColor: '#2699FB', 
         borderWidth: 1
     },
+    normalText:{
+        color: '#2699FB', 
+        fontSize: 10
+    }
     
 })
 

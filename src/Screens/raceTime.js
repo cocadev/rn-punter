@@ -5,9 +5,9 @@ import Dropdown from '../Components/Dropdown';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 const options = [
   'Cancel',
   '30 min',
@@ -29,8 +29,8 @@ export default class RaceTime extends Component {
 
   showActionSheet = () => this.actionSheet.show()
   getActionSheetRef = ref => (this.actionSheet = ref)
-  handlePress = index => { 
-   index > 0 && this.setState({ selected: index })
+  handlePress = index => {
+    index > 0 && this.setState({ selected: index })
   }
 
   render() {
