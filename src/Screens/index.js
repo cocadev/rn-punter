@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, Dimensions } from 'react-native';
 import styles from '../Config/styles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { images } from '../Config/images';
+
+const width = Dimensions.get('window').width
 
 export default class Index extends Component {
 
@@ -21,6 +24,11 @@ export default class Index extends Component {
           <Text style={styles.headText}>MYPUNTER TIPS & SELECTIONS</Text>
           <MaterialCommunityIcons name="settings" color={'#fff'} size={22} style={{ position: 'absolute', right: 15}}/>
         </View>
+
+        <View style={{ alignItems: 'center', marginTop: 50, marginBottom: 20}}>
+          <Image source={images.main} style={{ width: 225, height: 111}}/>
+        </View>
+
         <View style={styles.view}>
           <Text style={{ fontSize:12, color: '#2699FB'}}>Select Tipster</Text>
           <TextInput
