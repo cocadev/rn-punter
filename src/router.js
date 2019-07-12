@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Image, StatusBar } from 'react-native'
+import { Image, StatusBar, View, StyleSheet } from 'react-native'
 import { images } from './Config/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
 import * as Font from 'expo-font'
@@ -8,6 +8,13 @@ import Cache from "./Config/cache"
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
+
+const MyStatusBar = ({backgroundColor, ...props}) => (
+    <View style={[styles.statusBar, { backgroundColor }]}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+  
 
 export default class Router extends PureComponent {
 
@@ -20,10 +27,7 @@ export default class Router extends PureComponent {
     }
 
     async componentDidMount() {
-
         console.log('Cache.COMPANY_ID', Cache.COMPANY_ID)
-
-        // StatusBar.setHidden(true, 'none');
         await this._loadAssets();
         // this._retrieveData()
     }
@@ -81,7 +85,8 @@ export default class Router extends PureComponent {
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : null}
                 style={{ flex: 1 }}>
-                <StatusBar backgroundColor="red" barStyle="light-content" />
+
+                <MyStatusBar backgroundColor="#2699FB" barStyle="light-content" />
                 {fontLoaded == true ? (
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
@@ -90,3 +95,16 @@ export default class Router extends PureComponent {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    statusBar: {
+      height: 24,
+    },
+    content: {
+      flex: 1,
+      backgroundColor: '#2699FB',
+    },
+  });
