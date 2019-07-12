@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react'
 import { Image, StatusBar } from 'react-native'
-import { images } from './common/images'
+import { images } from './Config/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
 import * as Font from 'expo-font'
-import * as ROUTER from './common/routers'
-import Cache from "./common/cache"
+import * as ROUTER from './Components/routers'
+import Cache from "./Config/cache"
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-export default class App extends PureComponent {
+export default class Router extends PureComponent {
 
     constructor() {
         super();
@@ -81,10 +81,10 @@ export default class App extends PureComponent {
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : null}
                 style={{ flex: 1 }}>
-                {fontLoaded == true && authed > 0 ? (
+                {fontLoaded == true ? (
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
-                    : <Image source={images.splash} style={{ width, height }} />}
+                : <Image source={images.splash} style={{ width, height }} />}
             </KeyboardAvoidingView>
         );
     }
