@@ -7,10 +7,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     view: {
-        margin: 22,
+        marginTop: 22,
+        marginHorizontal: 22
     },
     headText: {
-        fontSize: 16,
+        fontSize: 14,
         color: 'white',
     },
     titleText: {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         height: 46, 
         marginVertical: 9,
         padding: 12,
-        fontSize: 17,
+        fontSize: 15,
         color: '#2699FB',
         borderColor: '#2699FB', 
         borderWidth: 1
