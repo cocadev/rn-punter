@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import Header from '../Components/Header';
 import styles from '../Config/styles';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class Passwords extends Component {
 
@@ -12,7 +13,15 @@ export default class Passwords extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title={'Password'} />
+        <Header
+          title={'Password'}
+          rightElement={(
+            <MaterialCommunityIcons
+              name="check"
+              color={'#fff'}
+              size={28}
+            />)}
+        />
         <View style={styles.view}>
           <Text style={styles.titleText}>Update Password</Text>
           <TextInput

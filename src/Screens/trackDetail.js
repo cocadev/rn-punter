@@ -20,7 +20,7 @@ export default class TrackDetail extends Component {
           title={'Track Details'}
           rightElement={(
             <MaterialCommunityIcons
-              name="check"
+              name="arrow-right"
               color={'#fff'}
               size={28}
             />)}
