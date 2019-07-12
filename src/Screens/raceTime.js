@@ -39,6 +39,7 @@ export default class RaceTime extends Component {
 
     return (
       <View style={styles.container}>
+        
         <Header
           title={'Race Time'}
           rightElement={(

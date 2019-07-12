@@ -9,6 +9,7 @@ import TrackDetail from '../Screens/trackDetail';
 import Settings from '../Screens/settings';
 
 const AUTH = [
+  { key: 'settings',       component: Settings},
   { key: 'races',          component: Races},
   { key: 'racetime',       component: RaceTime},
   { key: 'email',          component: Email},
@@ -19,7 +20,6 @@ const AUTH = [
 
 const MAIN = [
   { key: 'trackdetail',    component: TrackDetail},
-  { key: 'settings',       component: Settings},
 ]
 
 export const AuthPage = props => (
