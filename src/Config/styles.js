@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         marginHorizontal: p(22)
     },
     headText: {
-        fontSize: p(14),
+        fontSize: p(17),
+        fontWeight: '600',
         color: 'white',
     },
     titleText: {

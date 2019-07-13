@@ -49,7 +49,7 @@ export default class RaceTime extends Component {
               onPress={()=>Actions.races()}
               name="arrow-right"
               color={'#fff'}
-              size={28}
+              size={25}
             />)}
         />
 

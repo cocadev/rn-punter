@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Header from '../Components/Header';
 import styles from '../Config/styles';
-
 export default class Passwords extends Component {
 
   state={
@@ -20,7 +19,7 @@ export default class Passwords extends Component {
             <MaterialCommunityIcons
               name="check"
               color={'#fff'}
-              size={28}
+              size={25}
             />)}
         />
         <View style={styles.view}>

@@ -20,7 +20,7 @@ export default class Email extends Component {
             <MaterialCommunityIcons
               name="check"
               color={'#fff'}
-              size={28}
+              size={25}
             />)}
         />
         <View style={styles.view}>

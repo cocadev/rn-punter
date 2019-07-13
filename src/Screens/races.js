@@ -111,7 +111,7 @@ export default class Races extends Component {
             <MaterialCommunityIcons
               name="check"
               color={'#fff'}
-              size={28}
+              size={25}
             />)}
         />
 
