@@ -59,7 +59,7 @@ export default class Races extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.normalText}>Odds</Text>
-            <View style={style.box2}>
+            <View style={[style.box2, { marginRight: 0}]}>
               <Text style={style.title}>{(item.no1+item.no2+item.no3+item.no4+item.no5)/5}</Text>
             </View>
           </View>
@@ -136,8 +136,8 @@ const style = StyleSheet.create({
     marginBottom: p(16)
   },
   box: {
-    width: p(36),
-    height: p(36),
+    width: p(45),
+    height: p(45),
     marginRight: p(5),
     marginVertical: p(5),
     justifyContent: 'center',
@@ -146,10 +146,10 @@ const style = StyleSheet.create({
     borderWidth: 1
   },
   box2: {
-    height: p(36),
+    height: p(45),
     marginRight: p(5),
     marginVertical: p(5),
-    paddingLeft: p(8),
+    paddingLeft: p(14),
     justifyContent: 'center',
     borderColor: '#2699FB',
     borderWidth: 1

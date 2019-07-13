@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     normalText:{
         color: '#2699FB', 
-        fontSize: p(10)
+        fontSize: p(14)
     }
     
 })

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mypunter",
-    "slug": "mypunter",
+    "name": "mypunter-1",
+    "slug": "mypunter-1",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -25,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

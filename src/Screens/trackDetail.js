@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 import Header from '../Components/Header';
 import styles from '../Config/styles';
+import { p } from '../Config/normalize';
 
 export default class TrackDetail extends Component {
 
@@ -24,7 +25,7 @@ export default class TrackDetail extends Component {
               onPress={()=>Actions.racetime()}
               name="arrow-right"
               color={'#fff'}
-              size={28}
+              size={p(28)}
             />)}
         />
         <View style={styles.view}>
