@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { p } from './normalize';
 
 const styles = StyleSheet.create({
     container: {
@@ -7,34 +8,34 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     view: {
-        marginTop: 22,
-        marginHorizontal: 22
+        marginTop: p(22),
+        marginHorizontal: p(22)
     },
     headText: {
-        fontSize: 14,
+        fontSize: p(14),
         color: 'white',
     },
     titleText: {
-        fontSize: 17,
-        marginTop: 8,
+        fontSize: p(17),
+        marginTop: p(8),
         color: '#2699FB',
     },
     noteText: {
-        fontSize: 18,
+        fontSize: p(18),
         color: '#2699FB',
     },
     textInput:{
-        height: 46, 
-        marginVertical: 9,
-        padding: 12,
-        fontSize: 15,
+        height: p(46), 
+        marginVertical: p(9),
+        padding: p(12),
+        fontSize: p(15),
         color: '#2699FB',
         borderColor: '#2699FB', 
         borderWidth: 1
     },
     normalText:{
         color: '#2699FB', 
-        fontSize: 10
+        fontSize: p(10)
     }
     
 })

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Header from '../Components/Header';
-import Dropdown from '../Components/Dropdown';
-import ToggleSwitch from 'toggle-switch-react-native';
-import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
+import Header from '../Components/Header';
+import Dropdown from '../Components/Dropdown';
+import ToggleSwitch from 'toggle-switch-react-native';
+import styles from '../Config/styles';
+import { p } from '../Config/normalize';
 
 const options = [
   'Cancel',
@@ -52,7 +53,7 @@ export default class RaceTime extends Component {
             />)}
         />
 
-        <View style={[styles.view, { marginHorizontal: 12 }]}>
+        <View style={[styles.view, { marginHorizontal: p(12) }]}>
 
           <View style={style.filling}>
             <Text style={{ color: '#2699FB', fontWeight: '600' }}>Auto-filling</Text>

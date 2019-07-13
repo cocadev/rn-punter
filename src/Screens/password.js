@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import Header from '../Components/Header';
 import styles from '../Config/styles';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class Passwords extends Component {
 
