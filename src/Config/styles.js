@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import { p } from './normalize';
 
 const styles = StyleSheet.create({
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     normalText:{
         color: '#2699FB', 
-        fontSize: p(14)
+        fontSize: Platform.OS === 'ios' ? p(11) : p(13)
     }
     
 })

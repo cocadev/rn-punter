@@ -18,7 +18,7 @@ export default class Passwords extends Component {
           rightElement={(
             <MaterialCommunityIcons
               name="check"
-              color={'#fff'}
+              color={'#fff'} 
               size={25}
             />)}
         />

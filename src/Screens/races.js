@@ -136,8 +136,8 @@ const style = StyleSheet.create({
     marginBottom: p(16)
   },
   box: {
-    width: p(45),
-    height: p(45),
+    width: p(40),
+    height: p(40),
     marginRight: p(5),
     marginVertical: p(5),
     justifyContent: 'center',
@@ -146,7 +146,7 @@ const style = StyleSheet.create({
     borderWidth: 1
   },
   box2: {
-    height: p(45),
+    height: p(40),
     marginRight: p(5),
     marginVertical: p(5),
     paddingLeft: p(14),
@@ -157,6 +157,6 @@ const style = StyleSheet.create({
   title: {
     color: '#2699FB',
     fontWeight: '600',
-    fontSize: p(15)
+    fontSize: p(13)
   }
 })

@@ -8,7 +8,7 @@ import { p } from '../Config/normalize';
 export default class Settings extends Component {
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: '#fff', flex: 1}}>
 
         <View style={style.view}>
           <MaterialCommunityIcons name="arrow-left" color={'#2699FB'} size={28} onPress={()=>Actions.pop()}/>
