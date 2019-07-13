@@ -46,7 +46,7 @@ export default class Index extends Component {
           </View>
 
           <View style={styles.view}>
-            <TouchableOpacity style={style.btn}>
+            <TouchableOpacity style={style.btn} onPress={()=>Actions.trackdetail()}>
               <Text style={style.btnText}>START NEW TIPS</Text>
             </TouchableOpacity>
           </View>

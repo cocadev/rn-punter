@@ -7,6 +7,7 @@ import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Actions } from 'react-native-router-flux';
 
 const options = [
   'Cancel',
@@ -44,6 +45,7 @@ export default class RaceTime extends Component {
           title={'Race Time'}
           rightElement={(
             <MaterialCommunityIcons
+              onPress={()=>Actions.races()}
               name="arrow-right"
               color={'#fff'}
               size={28}
