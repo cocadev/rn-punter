@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
+import { p } from '../Config/normalize';
+import styles from '../Config/styles';
 
 export default class Header extends Component {
     render() {
@@ -25,9 +26,9 @@ const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 12,
+        paddingHorizontal: p(12),
         justifyContent: 'space-between',
-        height: 50,
+        height: p(50),
         backgroundColor: '#2699FB',
     }
 })

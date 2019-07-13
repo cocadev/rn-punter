@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput } from 'react-native';
-import Header from '../Components/Header';
-import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
+import Header from '../Components/Header';
+import styles from '../Config/styles';
 
 export default class TrackDetail extends Component {
 

@@ -128,17 +128,17 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#f1f9ff',
-    padding: 11,
-    marginHorizontal: 12,
-    marginBottom: 16
+    padding: p(11),
+    marginHorizontal: p(12),
+    marginBottom: p(16)
   },
   drop: {
     flexDirection: 'row',
-    paddingLeft: 8,
-    marginHorizontal: 6,
+    paddingLeft: p(8),
+    marginHorizontal: p(6),
     borderWidth: 1,
     alignItems: 'center',
-    borderRadius: 7,
+    borderRadius: p(7),
     borderColor: '#2699FB'
   }
 })

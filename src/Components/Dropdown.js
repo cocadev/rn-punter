@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from '../Config/styles';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import UtilService from '../Config/utils';
+import { p } from '../Config/normalize';
 
 export default class Dropdown extends Component {
 
@@ -28,7 +29,7 @@ export default class Dropdown extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginHorizontal: 12 }}>
+            <View style={{ flex: 1, marginHorizontal: p(12) }}>
                 <Text style={style.text}>{this.props.title}</Text>
                 <TouchableOpacity onPress={this.startOpen} style={style.dropDown}>
                     <Text style={styles.noteText}>{this.state.r_date}</Text>
@@ -52,19 +53,19 @@ export default class Dropdown extends Component {
 
 const style = StyleSheet.create({
     text: {
-        fontSize: 13,
+        fontSize: p(13),
         color: '#2699FB',
     },
     dropDown: {
-        height: 40,
+        height: p(40),
         flexDirection: 'row',
-        marginBottom: 11,
-        marginTop: 2,
+        marginBottom: p(11),
+        marginTop: p(2),
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingLeft: 12,
-        paddingRight: 6,
-        fontSize: 17,
+        paddingLeft: p(12),
+        paddingRight: p(6),
+        fontSize: p(17),
         color: '#2699FB',
         borderColor: '#2699FB',
         borderWidth: 1

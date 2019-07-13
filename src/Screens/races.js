@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, FlatList } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../Components/Header';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { p } from '../Config/normalize';
 
 const RACES = [
   { id: 1, no1: 1, no2:2, no3: 1, no4: 4, no5:3, name: 'SHARKYS', legend: 'SPECIAL', isOn: true },
@@ -32,7 +33,7 @@ export default class Races extends Component {
   }
 
   _renderItem = ({ item, key }) => (
-    <View style={[styles.view, { marginHorizontal: 6, marginTop:5 }]} key={key}>
+    <View style={[styles.view, { marginHorizontal: p(6), marginTop: p(5) }]} key={key}>
       <View style={style.filling}>
         <Text style={[style.title, { textAlign: 'center' }]}>RACE {item.id}</Text>
         <View style={{ flexDirection: 'row' }}>
@@ -64,7 +65,7 @@ export default class Races extends Component {
           </View>
         </View>
 
-        <View style={{ marginTop: 8 }}>
+        <View style={{ marginTop: p(8) }}>
           <Text style={styles.normalText}>Name</Text>
           <TextInput
             style={styles.textInput}
@@ -74,7 +75,7 @@ export default class Races extends Component {
           />
         </View>
 
-        <View style={{ marginTop: 8 }}>
+        <View style={{ marginTop: p(8) }}>
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={[styles.normalText, { color: !item.isOn ? '#BCE0FE': '#2699FB'}]}>Does this Race require the selections legend?</Text>
@@ -115,7 +116,7 @@ export default class Races extends Component {
         />
 
         <FlatList
-          style={{ marginTop: 12 }}
+          style={{ marginTop: p(12) }}
           data={RACES}
           keyExtractor={(item, i) => String(i)}
           renderItem={this._renderItem}
@@ -130,25 +131,25 @@ const style = StyleSheet.create({
   filling: {
     justifyContent: 'space-between',
     backgroundColor: '#f1f9ff',
-    padding: 15,
-    marginHorizontal: 12,
-    marginBottom: 16
+    padding: p(15),
+    marginHorizontal: p(12),
+    marginBottom: p(16)
   },
   box: {
-    width: 36,
-    height: 36,
-    marginRight: 5,
-    marginVertical: 5,
+    width: p(36),
+    height: p(36),
+    marginRight: p(5),
+    marginVertical: p(5),
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: '#2699FB',
     borderWidth: 1
   },
   box2: {
-    height: 36,
-    marginRight: 5,
-    marginVertical: 5,
-    paddingLeft: 8,
+    height: p(36),
+    marginRight: p(5),
+    marginVertical: p(5),
+    paddingLeft: p(8),
     justifyContent: 'center',
     borderColor: '#2699FB',
     borderWidth: 1
@@ -156,6 +157,6 @@ const style = StyleSheet.create({
   title: {
     color: '#2699FB',
     fontWeight: '600',
-    fontSize: 15
+    fontSize: p(15)
   }
 })
