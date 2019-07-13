@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, Dimensions, KeyboardAvoidingView } from 'react-native';
-import styles from '../Config/styles'
+import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
+import styles from '../Config/styles'
+import { Actions } from 'react-native-router-flux';
 
 export default class Index extends Component {
 
@@ -20,7 +21,7 @@ export default class Index extends Component {
       <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
         <View style={style.header}>
           <Text style={styles.headText}>MYPUNTER TIPS & SELECTIONS</Text>
-          <MaterialCommunityIcons name="settings" color={'#fff'} size={22} style={{ position: 'absolute', right: 15 }} />
+             <MaterialCommunityIcons onPress={()=>Actions.settings()} name="settings" color={'#fff'} size={22} style={{ position: 'absolute', right: 15 }} />
         </View>
         <ScrollView>
           <View style={{ alignItems: 'center', marginTop: 50, marginBottom: 20 }}>
@@ -74,7 +75,6 @@ const style = StyleSheet.create({
     borderRadius: 4
   },
   btnText: {
-    backgroundColor: '#2699FB',
     color: '#fff',
     fontSize: 16
   }

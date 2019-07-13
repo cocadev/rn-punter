@@ -15,13 +15,14 @@ const AUTH = [
   { key: 'email',          component: Email},
   { key: 'password',  component: Password},
   { key: 'trackdetail',    component: TrackDetail},
-]
-
-const MAIN = [
   { key: 'trackdetail',    component: TrackDetail},
   { key: 'settings',       component: Settings},
   { key: 'races',          component: Races},
 
+]
+
+const MAIN = [
+ 
 ]
 
 export const AuthPage = props => (

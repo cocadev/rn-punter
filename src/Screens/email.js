@@ -3,6 +3,7 @@ import { Text, View, TextInput } from 'react-native';
 import Header from '../Components/Header';
 import styles from '../Config/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Actions } from 'react-native-router-flux';
 
 export default class Email extends Component {
 
