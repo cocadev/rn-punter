@@ -5,6 +5,7 @@ import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
 import styles from '../Config/styles'
 import { Actions } from 'react-native-router-flux';
+import { p } from '../Config/normalize';
 
 export default class Index extends Component {
 
@@ -24,20 +25,20 @@ export default class Index extends Component {
              <MaterialCommunityIcons onPress={()=>Actions.settings()} name="settings" color={'#fff'} size={22} style={{ position: 'absolute', right: 15 }} />
         </View>
         <ScrollView>
-          <View style={{ alignItems: 'center', marginTop: 50, marginBottom: 20 }}>
-            <Image source={images.main} style={{ width: 225, height: 111 }} />
+          <View style={{ alignItems: 'center', marginTop: p(50), marginBottom: p(20) }}>
+            <Image source={images.main} style={{ width: p(225), height: p(111) }} />
           </View>
 
           <View style={styles.view}>
-            <Text style={{ fontSize: 12, color: '#2699FB' }}>Select Tipster</Text>
+            <Text style={{ fontSize: p(12), color: '#2699FB' }}>Select Tipster</Text>
             <TextInput
               style={styles.textInput}
               onChangeText={(tipster) => this.setState({ tipster })}
               value={this.state.tipster}
             />
           </View>
-          <View style={[styles.view, { marginTop: 12 }]}>
-            <Text style={{ fontSize: 12, color: '#2699FB' }}>Select Affiliates</Text>
+          <View style={[styles.view, { marginTop: p(12) }]}>
+            <Text style={{ fontSize: p(12), color: '#2699FB' }}>Select Affiliates</Text>
             <TextInput
               style={styles.textInput}
               onChangeText={(aff) => this.setState({ aff })}
@@ -61,21 +62,21 @@ const style = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    paddingHorizontal: p(12),
     justifyContent: 'center',
-    height: 50,
+    height: p(50),
     backgroundColor: '#2699FB',
   },
   btn: {
-    marginTop: 20,
+    marginTop: p(20),
     backgroundColor: '#2699FB',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 45,
+    height: p(45),
     borderRadius: 4
   },
   btnText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: p(16)
   }
 })
