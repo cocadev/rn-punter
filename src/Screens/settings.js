@@ -11,7 +11,7 @@ export default class Settings extends Component {
       <View style={{backgroundColor: '#fff', flex: 1}}>
 
         <View style={style.view}>
-          <MaterialCommunityIcons name="arrow-left" color={'#2699FB'} size={28} onPress={()=>Actions.pop()}/>
+          <MaterialCommunityIcons name="arrow-left" color={'#2699FB'} size={p(24)} onPress={()=>Actions.pop()}/>
           <Text style={style.text}>{'SETTINGS'}</Text>
           <Text>{''}</Text>
         </View>

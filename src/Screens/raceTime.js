@@ -49,22 +49,22 @@ export default class RaceTime extends Component {
               onPress={()=>Actions.races()}
               name="arrow-right"
               color={'#fff'}
-              size={25}
+              size={p(24)}
             />)}
         />
 
         <View style={[styles.view, { marginHorizontal: p(12) }]}>
 
           <View style={style.filling}>
-            <Text style={{ color: '#2699FB', fontWeight: '600' }}>Auto-filling</Text>
+            <Text style={{ color: '#2699FB', fontWeight: '600', fontSize: p(14) }}>Auto-filling</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ color: '#2699FB' }}>Every</Text>
+              <Text style={{ color: '#2699FB', fontSize: p(14) }}>Every</Text>
               <TouchableOpacity onPress={this.showActionSheet} style={style.drop}>
-                <Text style={{ color: '#2699FB' }}>{options[selected]}</Text>
+                <Text style={{ color: '#2699FB', fontSize: p(14) }}>{options[selected]}</Text>
                 <MaterialCommunityIcons
                   name="chevron-down"
                   color={'#2699FB'}
-                  size={24}
+                  size={p(24)}
                 />
               </TouchableOpacity>
             </View>

@@ -13,7 +13,7 @@ export default class Header extends Component {
                     onPress={()=>Actions.pop()}
                     name="arrow-left" 
                     color={'#fff'} 
-                    size={25}
+                    size={p(24)}
                 />
                 <Text style={styles.headText}>{this.props.title}</Text>
                 {this.props.rightElement}

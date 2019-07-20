@@ -22,7 +22,7 @@ export default class Index extends Component {
       <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
         <View style={style.header}>
           <Text style={styles.headText}>MYPUNTER TIPS & SELECTIONS</Text>
-             <MaterialCommunityIcons onPress={()=>Actions.settings()} name="settings" color={'#fff'} size={22} style={{ position: 'absolute', right: 15 }} />
+          <MaterialCommunityIcons onPress={() => Actions.settings()} name="settings" color={'#fff'} size={p(22)} style={{ position: 'absolute', right: p(15) }} />
         </View>
         <ScrollView>
           <View style={{ alignItems: 'center', marginTop: p(50), marginBottom: p(20) }}>
@@ -47,7 +47,7 @@ export default class Index extends Component {
           </View>
 
           <View style={styles.view}>
-            <TouchableOpacity style={style.btn} onPress={()=>Actions.trackdetail()}>
+            <TouchableOpacity style={style.btn} onPress={() => Actions.trackdetail()}>
               <Text style={style.btnText}>START NEW TIPS</Text>
             </TouchableOpacity>
           </View>

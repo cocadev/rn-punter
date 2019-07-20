@@ -3,6 +3,7 @@ import { Text, View, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../Components/Header';
 import styles from '../Config/styles';
+import { p } from '../Config/normalize';
 
 export default class Email extends Component {
 
@@ -20,7 +21,7 @@ export default class Email extends Component {
             <MaterialCommunityIcons
               name="check"
               color={'#fff'}
-              size={25}
+              size={p(24)}
             />)}
         />
         <View style={styles.view}>

@@ -25,7 +25,7 @@ export default class TrackDetail extends Component {
               onPress={()=>Actions.racetime()}
               name="arrow-right"
               color={'#fff'}
-              size={p(28)}
+              size={p(24)}
             />)}
         />
         <View style={styles.view}>
@@ -53,6 +53,7 @@ export default class TrackDetail extends Component {
           <Text style={styles.titleText}>How many races?</Text>
           <TextInput
             style={styles.textInput}
+            keyboardType={'numeric'}
             onChangeText={(race) => this.setState({ race })}
             value={this.state.race}
           />
