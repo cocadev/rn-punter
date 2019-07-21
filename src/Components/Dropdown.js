@@ -5,6 +5,7 @@ import styles from '../Config/styles';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import UtilService from '../Config/utils';
 import { p } from '../Config/normalize';
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 export default class Dropdown extends Component {
 
@@ -21,22 +22,33 @@ export default class Dropdown extends Component {
     _handleDatePicked = (date) => {
         this.setState({ r_date: UtilService.getTime(date) });
         this._hideDateTimePicker();
+        this.props.onClick(UtilService.getTime(date))
     };
 
     startOpen = () => {
-        this.setState({ isDateTimePickerVisible: true });
+        let number = this.props.title.substring(1);
+        if(number == 1){ 
+            this.setState({ isDateTimePickerVisible: true }); } 
+         else {
+            showMessage({
+                message: "Error",
+                description: "Auto filling should be R1",
+                type: "danger",
+                icon: 'danger'
+              });
+        }
     }
 
     render() {
         return (
-            <View style={{ flex: 1, marginHorizontal: p(12) }}>
+            <View style={style.itemView}>
                 <Text style={style.text}>{this.props.title}</Text>
                 <TouchableOpacity onPress={this.startOpen} style={style.dropDown}>
                     <Text style={styles.noteText}>{this.state.r_date}</Text>
                     <MaterialCommunityIcons
                         name="chevron-down"
                         color={'#2699FB'}
-                        size={24}
+                        size={p(24)}
                     />
                 </TouchableOpacity>
                 <DateTimePicker
@@ -46,12 +58,17 @@ export default class Dropdown extends Component {
                     is24Hour={true}
                     mode={'time'}
                 />
+                <FlashMessage position={{ bottom: p(14)}} />
             </View>
         );
     }
 }
 
 const style = StyleSheet.create({
+    itemView: {
+        flex: 1,
+        marginHorizontal: p(12)
+    },
     text: {
         fontSize: p(13),
         color: '#2699FB',
