@@ -5,7 +5,7 @@ import styles from '../Config/styles';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import UtilService from '../Config/utils';
 import { p } from '../Config/normalize';
-import FlashMessage, { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 export default class Dropdown extends Component {
 
@@ -14,6 +14,7 @@ export default class Dropdown extends Component {
         this.state = {
             isDateTimePickerVisible: false,
             r_date: props.time,
+            isOn: props.isOn
         }
     }
 
@@ -27,7 +28,8 @@ export default class Dropdown extends Component {
 
     startOpen = () => {
         let number = this.props.title.substring(1);
-        if(number == 1){ 
+
+        if(number == 1 ){ 
             this.setState({ isDateTimePickerVisible: true }); } 
          else {
             showMessage({
@@ -35,15 +37,21 @@ export default class Dropdown extends Component {
                 description: "Auto filling should be R1",
                 type: "danger",
                 icon: 'danger'
-              });
+            });
         }
     }
 
     render() {
+
         return (
             <View style={style.itemView}>
+
                 <Text style={style.text}>{this.props.title}</Text>
-                <TouchableOpacity onPress={this.startOpen} style={style.dropDown}>
+
+                <TouchableOpacity 
+                    onPress={this.startOpen} 
+                    style={style.dropDown}
+                >
                     <Text style={styles.noteText}>{this.state.r_date}</Text>
                     <MaterialCommunityIcons
                         name="chevron-down"
@@ -51,14 +59,16 @@ export default class Dropdown extends Component {
                         size={p(24)}
                     />
                 </TouchableOpacity>
+
                 <DateTimePicker
                     isVisible={this.state.isDateTimePickerVisible}
                     onConfirm={this._handleDatePicked}
                     onCancel={this._hideDateTimePicker}
                     is24Hour={true}
                     mode={'time'}
+                    
                 />
-                <FlashMessage position={{ bottom: p(14)}} />
+
             </View>
         );
     }

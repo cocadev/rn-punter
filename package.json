@@ -13,6 +13,7 @@
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-check-box": "^2.1.7",
     "react-native-custom-actionsheet": "^0.0.4",
     "react-native-flash-message": "^0.1.13",
     "react-native-modal-datetime-picker": "^7.5.0",

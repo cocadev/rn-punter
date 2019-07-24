@@ -4,11 +4,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
+import { p } from '../Config/normalize';
 import Header from '../Components/Header';
 import Dropdown from '../Components/Dropdown';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
-import { p } from '../Config/normalize';
 import UtilService from '../Config/utils';
 
 const options = [
@@ -30,7 +30,6 @@ export default class RaceTime extends Component {
     selected: 1,
     times: null,
     time_size: 30,
-    auto: true,
     default_time: 600 // 10: 00 AM
   }
 
@@ -77,7 +76,11 @@ export default class RaceTime extends Component {
           title={'Race Time'}
           rightElement={(
             <MaterialCommunityIcons
-              onPress={() => Actions.races()}
+              onPress={() => {
+                // Actions.races()
+                console.log("***************************", this.state.times)
+
+              }}
               name="arrow-right"
               color={'#fff'}
               size={p(24)}
@@ -115,8 +118,13 @@ export default class RaceTime extends Component {
 
           {times && <FlatList
             data={times}
-            renderItem={({ item }) => (
-              <Dropdown time={item.time} title={'R' + item.id} onClick={(x) => this.onUpdate(x)} />
+            renderItem={({ item, key }) => (
+              <Dropdown 
+                key={key}
+                time={item.time} 
+                title={'R' + item.id} 
+                onClick={(x) => this.onUpdate(x)} 
+              />
             )}
             numColumns={2}
             keyExtractor={(item, index) => index}

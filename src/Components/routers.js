@@ -7,11 +7,13 @@ import RaceTime from '../Screens/raceTime';
 import Races from '../Screens/races';
 import TrackDetail from '../Screens/trackDetail';
 import Settings from '../Screens/settings';
+import Login from '../Screens/login';
 
 const AUTH = [
-  { key: 'racetime',       component: RaceTime},
+  { key: 'login',     component: Login},
 
   { key: 'index',     component: Index},
+  { key: 'racetime',       component: RaceTime},
 
   { key: 'email',          component: Email},
   { key: 'password',       component: Password},

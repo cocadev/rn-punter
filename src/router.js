@@ -5,6 +5,8 @@ import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-
 import * as Font from 'expo-font'
 import * as ROUTER from './Components/routers'
 import Cache from "./Config/cache"
+import FlashMessage from "react-native-flash-message";
+import { p } from './Config/normalize';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -91,6 +93,7 @@ export default class Router extends PureComponent {
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
                 : <Image source={images.splash} style={{ width, height }} />}
+                <FlashMessage position={{ bottom: p(14)}} />
             </KeyboardAvoidingView>
         );
     }
