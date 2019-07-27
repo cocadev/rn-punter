@@ -21,16 +21,20 @@ const options = [
 
 export default class RaceTime extends Component {
 
-  state = {
-    meeting: 'RANDWICK',
-    track: 'GOOD',
-    rail: 'TRUE',
-    race: '3',
-    isOn: true,
-    selected: 1,
-    times: null,
-    time_size: 30,
-    default_time: 600 // 10: 00 AM
+  constructor() {
+    super();
+    this.state = {
+      meeting: 'RANDWICK',
+      track: 'GOOD',
+      rail: 'TRUE',
+      race: '3',
+      isOn: true,
+      selected: 1,
+      times: null,
+      time_size: 30,
+      default_time: 600 // 10: 00 AM
+    }
+    this.reFilling = this.reFilling.bind(this)
   }
 
   componentDidMount() {
@@ -52,8 +56,8 @@ export default class RaceTime extends Component {
     this.setState({ times })
   }
 
-  reFilling(){
-    alert(JSON.stringify(this.state.times))
+  reFilling(index) {
+    alert(index)
   }
 
   showActionSheet = () => this.actionSheet.show()
@@ -66,14 +70,14 @@ export default class RaceTime extends Component {
     index > 0 && this.onAutoFilling()
   }
 
-  onUpdate = (time) => {
+  onUpdate = (time, index) => {
     let hour = parseInt(time.substring(0, 2));
     let mins = parseInt(time.substring(3, 5));
     let hour_mins = hour * 60 + mins;
-    this.setState({ 
+    this.setState({
       default_time: hour_mins
     })
-    this.state.isOn ? this.onAutoFilling() : this.reFilling()
+    this.state.isOn ? this.onAutoFilling() : this.reFilling(index)
   }
 
   render() {
@@ -129,28 +133,29 @@ export default class RaceTime extends Component {
             />
           </View>
 
-          {isOn && times && <FlatList
-            data={times}
-            renderItem={({ item, key }) => (
-              <Dropdown
-                key={key}
-                time={item.time}
-                title={'R' + item.id}
-                onClick={(x) => this.onUpdate(x)}
-              />
-            )}
-            numColumns={2}
-            keyExtractor={(item, index) => index}
-          />}
+          {isOn && times &&
+            <FlatList
+              data={times}
+              renderItem={({ item, index }) => (
+                <Dropdown
+                  key={index}
+                  time={item.time}
+                  title={'R' + item.id}
+                  onClick={(x) => this.onUpdate(x, index)}
+                />
+              )}
+              numColumns={2}
+              keyExtractor={(item, index) => index}
+            />}
 
           {!isOn && times && <FlatList
             data={times}
-            renderItem={({ item, key }) => (
+            renderItem={({ item, index }) => (
               <Dropdown2
-                key={key}
+                key={index}
                 time={item.time}
                 title={'R' + item.id}
-                onClick={(x) => this.onUpdate(x)}
+                onClick={(x) => this.onUpdate(x, index)}
               />
             )}
             numColumns={2}

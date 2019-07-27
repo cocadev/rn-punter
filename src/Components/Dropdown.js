@@ -42,8 +42,9 @@ export default class Dropdown extends Component {
 
     render() {
 
-        const hour = this.props.time.substring(0, 2);
         const off = parseInt(new Date().getTimezoneOffset()/60);
+        const t = parseInt(this.props.time.substring(0, 2))+off ;
+        const hour = t>24 ? t-24: t;
         const minute = this.props.time.substring(3, 5)
 
         console.log('h=', hour, 'm=', minute, 'off=', off)
@@ -71,7 +72,7 @@ export default class Dropdown extends Component {
                     onCancel={this._hideDateTimePicker}
                     is24Hour={true}
                     mode={'time'}
-                    date={new Date(`2011-04-11T${hour}:${minute}`)}   
+                    date={new Date(`2011-04-11T${UtilService.padWithZero(hour)}:${minute}`)}   
                     
                 />
 
