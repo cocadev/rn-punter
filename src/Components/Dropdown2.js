@@ -5,9 +5,8 @@ import styles from '../Config/styles';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import UtilService from '../Config/utils';
 import { p } from '../Config/normalize';
-import { showMessage } from "react-native-flash-message";
 
-export default class Dropdown extends Component {
+export default class Dropdown2 extends Component {
 
     constructor(props) {
         super(props);
@@ -27,17 +26,7 @@ export default class Dropdown extends Component {
     };
 
     startOpen = () => {
-        let number = this.props.title.substring(1);
-        if(number == 1 ){ 
-            this.setState({ isDateTimePickerVisible: true }); } 
-         else {
-            showMessage({
-                message: "Error",
-                description: "Auto filling should be R1",
-                type: "danger",
-                icon: 'danger'
-            });
-        }
+        this.setState({ isDateTimePickerVisible: true });
     }
 
     render() {

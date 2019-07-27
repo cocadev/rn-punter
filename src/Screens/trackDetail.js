@@ -13,9 +13,9 @@ import ValidateService from '../Config/validate';
 export default class TrackDetail extends Component {
 
   state = {
-    meeting: null,
-    track: null,
-    rail: null,
+    meeting: "RANDWICK",
+    track: "GOOD",
+    rail: "true",
     race: null,
   }
 
@@ -30,7 +30,7 @@ export default class TrackDetail extends Component {
       type: "danger",
       icon: 'danger'
     });
-    !err && Actions.racetime()
+    !err && Actions.racetime({ count: this.state.race})
   }
 
   render() {

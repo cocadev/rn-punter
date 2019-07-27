@@ -93,7 +93,7 @@ export default class Router extends PureComponent {
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
                 : <Image source={images.splash} style={{ width, height }} />}
-                <FlashMessage position={{ bottom: p(14)}} />
+                <FlashMessage position={{ bottom: p(0)}} />
             </KeyboardAvoidingView>
         );
     }

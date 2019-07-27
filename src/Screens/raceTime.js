@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { Text, View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Actions } from 'react-native-router-flux';
 import { p } from '../Config/normalize';
 import Header from '../Components/Header';
 import Dropdown from '../Components/Dropdown';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
 import UtilService from '../Config/utils';
+import Dropdown2 from '../Components/Dropdown2';
 
 const options = [
   'Cancel',
@@ -38,13 +38,22 @@ export default class RaceTime extends Component {
   }
 
   onAutoFilling() {
-    this.setState({ times: null })
+    this.setState({
+      times: null
+    })
     let times = [];
-    const race_count = 8;
+
+    // const race_count = this.props.count;
+    const race_count = 2;
+
     for (let i = 1; i <= race_count; i++) {
       times.push({ id: i, time: UtilService.divideTime(this.state.default_time + (i - 1) * this.state.time_size) })
     }
     this.setState({ times })
+  }
+
+  reFilling(){
+    alert(JSON.stringify(this.state.times))
   }
 
   showActionSheet = () => this.actionSheet.show()
@@ -61,13 +70,15 @@ export default class RaceTime extends Component {
     let hour = parseInt(time.substring(0, 2));
     let mins = parseInt(time.substring(3, 5));
     let hour_mins = hour * 60 + mins;
-    this.setState({ default_time: hour_mins })
-    this.onAutoFilling()
+    this.setState({ 
+      default_time: hour_mins
+    })
+    this.state.isOn ? this.onAutoFilling() : this.reFilling()
   }
 
   render() {
 
-    const { selected, times } = this.state;
+    const { selected, times, isOn } = this.state;
 
     return (
       <View style={styles.container}>
@@ -87,7 +98,9 @@ export default class RaceTime extends Component {
             />)}
         />
 
-        <View style={[styles.view, { marginHorizontal: p(12) }]}>
+        <ScrollView style={[styles.view, { paddingHorizontal: p(22), marginBottom: p(20), marginHorizontal: 0 }]}>
+
+          <Text>{isOn ? 'On' : 'Off'}</Text>
 
           <View style={style.filling}>
             <Text style={{ color: '#2699FB', fontWeight: '600', fontSize: p(14) }}>Auto-filling</Text>
@@ -116,21 +129,35 @@ export default class RaceTime extends Component {
             />
           </View>
 
-          {times && <FlatList
+          {isOn && times && <FlatList
             data={times}
             renderItem={({ item, key }) => (
-              <Dropdown 
+              <Dropdown
                 key={key}
-                time={item.time} 
-                title={'R' + item.id} 
-                onClick={(x) => this.onUpdate(x)} 
+                time={item.time}
+                title={'R' + item.id}
+                onClick={(x) => this.onUpdate(x)}
               />
             )}
             numColumns={2}
             keyExtractor={(item, index) => index}
           />}
 
-        </View>
+          {!isOn && times && <FlatList
+            data={times}
+            renderItem={({ item, key }) => (
+              <Dropdown2
+                key={key}
+                time={item.time}
+                title={'R' + item.id}
+                onClick={(x) => this.onUpdate(x)}
+              />
+            )}
+            numColumns={2}
+            keyExtractor={(item, index) => index}
+          />}
+
+        </ScrollView>
 
         <ActionSheet
           ref={this.getActionSheetRef}
