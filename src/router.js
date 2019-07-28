@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react'
 import { Image, StatusBar, View, StyleSheet } from 'react-native'
 import { images } from './Config/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
+import { p } from './Config/normalize';
 import * as Font from 'expo-font'
 import * as ROUTER from './Components/routers'
 import Cache from "./Config/cache"
 import FlashMessage from "react-native-flash-message";
-import { p } from './Config/normalize';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height

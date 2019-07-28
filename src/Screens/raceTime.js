@@ -10,6 +10,7 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
 import UtilService from '../Config/utils';
 import Dropdown2 from '../Components/Dropdown2';
+import { Actions } from 'react-native-router-flux';
 
 const options = [
   'Cancel',
@@ -47,17 +48,16 @@ export default class RaceTime extends Component {
     })
     let times = [];
 
-    // const race_count = this.props.count;
-    const race_count = 2;
-
-    for (let i = 1; i <= race_count; i++) {
+    for (let i = 1; i <= this.props.count; i++) {
       times.push({ id: i, time: UtilService.divideTime(this.state.default_time + (i - 1) * this.state.time_size) })
     }
     this.setState({ times })
   }
 
   reFilling(index) {
-    alert(index)
+    let newArray = [...this.state.times];
+    newArray[index] = { id: index + 1, time: UtilService.divideTime(this.state.default_time)};
+    this.setState({ times: newArray });
   }
 
   showActionSheet = () => this.actionSheet.show()
@@ -92,9 +92,7 @@ export default class RaceTime extends Component {
           rightElement={(
             <MaterialCommunityIcons
               onPress={() => {
-                // Actions.races()
-                console.log("***************************", this.state.times)
-
+                Actions.races({ times: this.state.times})
               }}
               name="arrow-right"
               color={'#fff'}
