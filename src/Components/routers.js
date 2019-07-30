@@ -8,8 +8,10 @@ import Races from '../Screens/races';
 import TrackDetail from '../Screens/trackDetail';
 import Settings from '../Screens/settings';
 import Login from '../Screens/login';
+import Results from '../Screens/results';
 
 const AUTH = [
+
   { key: 'trackdetail',    component: TrackDetail},
   { key: 'racetime',       component: RaceTime},
   { key: 'login',          component: Login},
@@ -18,6 +20,7 @@ const AUTH = [
   { key: 'password',       component: Password},
   { key: 'settings',       component: Settings},
   { key: 'races',          component: Races},
+  { key: 'results',        component: Results},
 
 ]
 

@@ -1,40 +1,63 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, FlatList, KeyboardAvoidingView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { p } from '../Config/normalize';
+import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Header from '../Components/Header';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
-import { p } from '../Config/normalize';
+import { Actions } from 'react-native-router-flux';
+
+const options = [
+  'Cancel',
+  '',
+  'Double Up Tip',
+  'Special',
+  'Best Bet',
+  'Eachway',
+  'Place Bet',
+  'MyPunter App',
+  'First 4 Flexi',
+  'First 2',
+  'First 3',
+  'First 4',
+  'Best Roughie'
+]
 
 export default class Races extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      myRaces: null
+      myRaces: null,
+      legend: 0,
+      selected: 0,
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
-    let myRaces= [];
+    let myRaces = [];
     let times = this.props.times;
 
     for (let i = 0; i < times.length; i++) {
-      myRaces.push({ 
+      myRaces.push({
         id: times[i].id,
-        times: times[i].time, 
-        no1: "0", 
-        no2: "0", 
-        no3: "0", 
-        no4: "0", 
-        no5: "0", 
-        name: ""
+        times: times[i].time,
+        no1: "0",
+        no2: "0",
+        no3: "0",
+        no4: "0",
+        no5: "0",
+        name: "",
+        legend: "1"
       })
     }
     this.setState({ myRaces })
   }
+
+  getActionSheetRef = ref => (this.actionSheet = ref)
 
   _renderItem = ({ item, index }) => (
     <View style={[styles.view, { marginHorizontal: p(6), marginTop: p(5) }]} key={index}>
@@ -48,7 +71,7 @@ export default class Races extends Component {
                 style={style.box}
                 onChangeText={(no1) => {
                   let newArray1 = [...this.state.myRaces];
-                  newArray1[index]['no1'] = no1 ;
+                  newArray1[index]['no1'] = no1;
                   this.setState({ myRaces: newArray1 });
                 }}
                 keyboardType={'numeric'}
@@ -57,7 +80,7 @@ export default class Races extends Component {
                 style={style.box}
                 onChangeText={(no2) => {
                   let newArray2 = [...this.state.myRaces];
-                  newArray2[index]['no2'] = no2 ;
+                  newArray2[index]['no2'] = no2;
                   this.setState({ myRaces: newArray2 });
                 }}
                 keyboardType={'numeric'}
@@ -66,7 +89,7 @@ export default class Races extends Component {
                 style={style.box}
                 onChangeText={(no3) => {
                   let newArray3 = [...this.state.myRaces];
-                  newArray3[index]['no3'] = no3 ;
+                  newArray3[index]['no3'] = no3;
                   this.setState({ myRaces: newArray3 });
                 }}
                 keyboardType={'numeric'}
@@ -75,7 +98,7 @@ export default class Races extends Component {
                 style={style.box}
                 onChangeText={(no4) => {
                   let newArray4 = [...this.state.myRaces];
-                  newArray4[index]['no4'] = no4 ;
+                  newArray4[index]['no4'] = no4;
                   this.setState({ myRaces: newArray4 });
                 }}
                 keyboardType={'numeric'}
@@ -105,7 +128,7 @@ export default class Races extends Component {
             style={styles.textInput}
             onChangeText={(name) => {
               let newArrayName = [...this.state.myRaces];
-              newArrayName[index]['name'] = name ;
+              newArrayName[index]['name'] = name;
               this.setState({ myRaces: newArrayName });
             }}
             value={item.name}
@@ -115,29 +138,42 @@ export default class Races extends Component {
         <View style={{ marginTop: p(8) }}>
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={[styles.normalText, { color: !item.isOn ? '#BCE0FE' : '#2699FB' }]}>Does this Race require the selections legend?</Text>
-            <ToggleSwitch
+            <Text style={[styles.normalText, { color: item.isOn ? '#BCE0FE' : '#2699FB' }]}>Does this Race require the selections legend?</Text>
+            {/* <ToggleSwitch
               isOn={item.isOn}
               onColor='#2699FB'
               offColor='#EBEEF1'
               size='small'
               onToggle={(isOn) => this.setState({ isOn: !this.state.isOn })}
-            />
+            /> */}
           </View>
 
-          <TextInput
-            style={styles.textInput}
-            editable={true}
-            onChangeText={(legend) => this.setState({ legend })}
-            value={item.isOn ? item.legend : ''}
-          />
+          <TouchableOpacity
+            style={style.legend}
+            onPress={() => {
+              this.setState({ selected: index })
+              this.actionSheet.show()
+            }}>
+            <Text style={{ fontSize: p(15), color: '#2699FB' }}>{options[item.legend]}</Text>
+          </TouchableOpacity>
+
         </View>
 
       </View>
     </View>
   )
 
+  handlePress = index => {
+    if(index > 0 ){
+      let newArray = [...this.state.myRaces];
+      newArray[this.state.selected]['legend'] = index;
+      this.setState({ myRaces: newArray, legend: index });
+    }
+  }
+
   render() {
+
+    const { legend } = this.state
 
     return (
       <KeyboardAvoidingView
@@ -151,7 +187,7 @@ export default class Races extends Component {
           title={'Races'}
           rightElement={(
             <MaterialCommunityIcons
-              onPress={() => { alert(JSON.stringify(this.state.myRaces)) }}
+              onPress={() => Actions.results({results: this.state.myRaces})}
               name="check"
               color={'#fff'}
               size={p(24)}
@@ -164,6 +200,14 @@ export default class Races extends Component {
           keyExtractor={(item, i) => String(i)}
           renderItem={this._renderItem}
           extraData={this.state}
+        />
+
+        <ActionSheet
+          ref={this.getActionSheetRef}
+          options={options}
+          cancelButtonIndex={0}
+          destructiveButtonIndex={legend}
+          onPress={this.handlePress}
         />
 
       </KeyboardAvoidingView>
@@ -205,5 +249,12 @@ const style = StyleSheet.create({
     color: '#2699FB',
     fontWeight: '600',
     fontSize: p(13)
+  },
+  legend: {
+    height: p(46),
+    marginVertical: p(9),
+    padding: p(12),
+    borderColor: '#2699FB',
+    borderWidth: 1
   }
 })
