@@ -7,28 +7,35 @@ import { showMessage } from "react-native-flash-message";
 import Header from '../Components/Header';
 import styles from '../Config/styles';
 import ValidateService from '../Config/validate';
+import Cache from '../Config/cache';
 
 export default class TrackDetail extends Component {
 
   state = {
-    meeting: "RANDWICK",
-    track: "GOOD",
-    rail: "true",
+    meeting: "",
+    track: "",
+    rail: "",
     race: null,
   }
 
   validate=()=>{
 
     const { meeting, track, rail, race } = this.state;
-    var err = ValidateService.trackDetails(meeting, track, rail, race)
+    var err = ValidateService.trackDetails(meeting, track, rail, race);
 
-    err && showMessage({
-      message: "Validation error",
-      description: err,
-      type: "danger",
-      icon: 'danger'
-    });
-    !err && Actions.racetime({ count: this.state.race})
+    if(err){
+      showMessage({
+        message: "Validation error",
+        description: err,
+        type: "danger",
+        icon: 'danger'
+      });
+    } else{
+      Cache.Meeting = meeting;
+      Cache.Track = track;
+      Cache.Rail = rail;
+      Actions.racetime({ count: this.state.race})
+    }
   }
 
   render() {

@@ -6,14 +6,34 @@ import { images } from '../Config/images';
 import styles from '../Config/styles'
 import { Actions } from 'react-native-router-flux';
 import { p } from '../Config/normalize';
+import Cache from '../Config/cache';
+import ValidateService from '../Config/validate';
+import { showMessage } from "react-native-flash-message";
 
 export default class Index extends Component {
 
   constructor() {
     super();
     this.state = {
-      tipster: 'BEHIND THE BARRIER',
-      aff: 'CROWNBET'
+      tipster: '',
+      aff: ''
+    }
+  }
+
+  goon=()=>{
+    const { tipster, aff } = this.state;
+    var bug = ValidateService.Tips(tipster, aff);
+    if (bug) {
+      showMessage({
+        message: "Validation error",
+        description: bug,
+        type: "danger",
+        icon: 'danger'
+      });
+    } else {
+      Cache.Tipster = tipster;
+      Cache.Aff = aff;
+      Actions.trackdetail()
     }
   }
 
@@ -47,7 +67,7 @@ export default class Index extends Component {
           </View>
 
           <View style={styles.view}>
-            <TouchableOpacity style={style.btn} onPress={() => Actions.trackdetail()}>
+            <TouchableOpacity style={style.btn} onPress={this.goon}>
               <Text style={style.btnText}>START NEW TIPS</Text>
             </TouchableOpacity>
           </View>

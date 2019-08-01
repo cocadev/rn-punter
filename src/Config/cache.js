@@ -1,11 +1,11 @@
 class Cache {
     constructor() {
-      this.USER = null;
-      this.router = [];
       this.ACCESS_TOKEN = null;
-      this.COMPANY_ID = null;
-      this.EMAIL = null;
-      this.ID = null;
+      this.Meeting = null;
+      this.Track = null;
+      this.Rail = null;
+      this.Tipster = null;
+      this.Aff = null;
     }
   }
   

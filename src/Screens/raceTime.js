@@ -4,13 +4,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { p } from '../Config/normalize';
+import { Actions } from 'react-native-router-flux';
 import Header from '../Components/Header';
 import Dropdown from '../Components/Dropdown';
 import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../Config/styles';
 import UtilService from '../Config/utils';
 import Dropdown2 from '../Components/Dropdown2';
-import { Actions } from 'react-native-router-flux';
 
 const options = [
   'Cancel',
@@ -56,7 +56,7 @@ export default class RaceTime extends Component {
 
   reFilling(index) {
     let newArray = [...this.state.times];
-    newArray[index] = { id: index + 1, time: UtilService.divideTime(this.state.default_time)};
+    newArray[index] = { id: index + 1, time: UtilService.divideTime(this.state.default_time) };
     this.setState({ times: newArray });
   }
 
@@ -92,7 +92,7 @@ export default class RaceTime extends Component {
           rightElement={(
             <MaterialCommunityIcons
               onPress={() => {
-                Actions.races({ times: this.state.times})
+                Actions.races({ times: this.state.times })
               }}
               name="arrow-right"
               color={'#fff'}
@@ -101,8 +101,6 @@ export default class RaceTime extends Component {
         />
 
         <ScrollView style={[styles.view, { paddingHorizontal: p(22), marginBottom: p(20), marginHorizontal: 0 }]}>
-
-          <Text>{isOn ? 'On' : 'Off'}</Text>
 
           <View style={style.filling}>
             <Text style={{ color: '#2699FB', fontWeight: '600', fontSize: p(14) }}>Auto-filling</Text>

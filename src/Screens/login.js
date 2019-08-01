@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
-import { Actions } from 'react-native-router-flux';
 import { showMessage } from "react-native-flash-message";
 import { p } from '../Config/normalize';
 import { SERVICE_API_URL } from '../Config/config';
@@ -17,8 +16,8 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: 'admin',
-      password: 'admin',
+      username: '',
+      password: '',
       isChecked: false
     }
   }
@@ -35,9 +34,8 @@ export default class Login extends Component {
         type: "danger",
         icon: 'danger'
       });
-    }
-
-    axios.post(`${SERVICE_API_URL}json/data_login.php`,
+    } else {
+      axios.post(`${SERVICE_API_URL}json/data_login.php`,
       { username, password })
       .then(res => {
         var result = res.data;
@@ -49,9 +47,17 @@ export default class Login extends Component {
             icon: 'success'
           });
           this._retrieveData(result.token)
+        } else {
+          showMessage({
+            message: "Login Fail",
+            description: result.message,
+            type: "danger",
+            icon: 'danger'
+          });
         }
       })
       .catch(e => console.log('err', e))
+    }
   }
 
   _retrieveData = async (x) => {

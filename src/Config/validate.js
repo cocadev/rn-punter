@@ -21,6 +21,16 @@ class ValidateService {
         
         return bug
     }
+
+    static Tips(tipster, aff) {
+
+        var bug = null;
+        
+        if (!aff) { bug = 'Affiliates should not be null' }
+        if (!tipster) { bug = 'Tipster should not be null'}
+        
+        return bug
+    }
 }
 
 export default ValidateService

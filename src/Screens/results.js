@@ -4,10 +4,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { p } from '../Config/normalize';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SERVICE_API_URL } from '../Config/config';
+import Cache from '../Config/cache';
 import ViewShot from 'react-native-view-shot';
 import Header from '../Components/Header';
 import axios from 'axios';
-import { colors, Tcolors, myResults } from '../Config/config';
+import { colors, Tcolors } from '../Config/config';
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
@@ -51,21 +52,22 @@ export default class Results extends Component {
       <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[item.legend == 8 ? item.legend : 1] }]}>
         <Text style={[styles.itemText, { color: Tcolors[item.legend == 8 && item.legend] }]}>{item.no5}</Text>
       </View>
-      <View style={[index == 0 ? styles.item2 : styles.item, { width: 300, backgroundColor: colors[item.legend == 8 ? item.legend : 1] }]}>
-        <Text style={[styles.itemText, { color: Tcolors[item.legend == 8 && item.legend] }]}>{item.name}</Text>
+      <View style={[index == 0 ? styles.item2 : styles.item, { width: 300, backgroundColor: colors[item.legend] }]}>
+        <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{item.name}</Text>
       </View>
       <View style={[index == 0 ? styles.item2 : styles.item, { width: 120, backgroundColor: colors[item.legend] }]}>
-        <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{'1.3'}</Text>
+        <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{(parseInt(item.no1) + parseInt(item.no2) + parseInt(item.no3) + parseInt(item.no4) + parseInt(item.no5)) / 5}</Text>
       </View>
 
     </View>
   )
 
   imageContainer() {
+    const myResults = this.props.results;
     return (
         <ScrollView horizontal style={{ marginTop: height }} >
           <ViewShot
-            style={{ height: 174 + myResults.length * 58 }}
+            style={{ height: 176 + (myResults.length * 58) }}
             ref="full"
             options={{ format: this.state.options.format, quality: this.state.options.quality }}
           >
@@ -75,7 +77,7 @@ export default class Results extends Component {
                   <Text style={[styles.itemText, { color: '#fff' }]}>{'START'}</Text>
                 </View>
                 <View style={[styles.item, { width: 876, borderBottomWidth: 0, borderTopWidth: 2, alignItems: 'flex-start', paddingLeft: 10, backgroundColor: '#d9d9d9' }]}>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left' }]}>{'PAKENHAM : Track SYNTHETIC - TRUE'}</Text>
+                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left' }]}>{Cache.Meeting + ' : Track '+ Cache.Track +' - ' + Cache.Rail}</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row' }}>
@@ -83,8 +85,8 @@ export default class Results extends Component {
                   <Text style={[styles.itemText, { color: '#fff' }]}>{'TIME'}</Text>
                 </View>
                 <View style={[styles.item, { width: 876, borderBottomWidth: 0, justifyContent: 'flex-start', flexDirection: 'row', backgroundColor: '#d9d9d9' }]}>
-                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{'THE HAMMER'}</Text>
-                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{'LADBROKES'}</Text>
+                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Tipster}</Text>
+                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Aff}</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row' }}>
@@ -150,9 +152,9 @@ export default class Results extends Component {
 
         <TouchableOpacity
           onPress={async () => await this.captureViewShoot()}
-          style={{ marginVertical: p(30), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
+          style={{ marginVertical: p(15), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
         >
-          <Text style={{ fontSize: p(20) }}>View Result</Text>
+          <Text style={{ fontSize: p(15) }}>View Result</Text>
         </TouchableOpacity>
 
         { img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'}/>}
