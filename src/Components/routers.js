@@ -10,37 +10,32 @@ import Settings from '../Screens/settings';
 import Login from '../Screens/login';
 import Results from '../Screens/results';
 
-const AUTH = [
-  { key: 'login',          component: Login},
-  { key: 'results',        component: Results},
-  { key: 'trackdetail',    component: TrackDetail},
-  { key: 'racetime',       component: RaceTime},
-  { key: 'index',          component: Index},
-  { key: 'email',          component: Email},
-  { key: 'password',       component: Password},
-  { key: 'settings',       component: Settings},
-  { key: 'races',          component: Races},
-]
-
 const MAIN = [
- 
+  { key: 'results', component: Results },
+  { key: 'index', component: Index },
+  { key: 'trackdetail', component: TrackDetail },
+  { key: 'racetime', component: RaceTime },
+  { key: 'email', component: Email },
+  { key: 'password', component: Password },
+  { key: 'races', component: Races },
 ]
 
 export const AuthPage = props => (
   <Router>
     <Stack key='root'>
-     { AUTH.map(a => (<Scene key={a.key} component={a.component} hideNavBar />))}
-     <Scene key="signin" component={Index} update={(res)=>props.logIn(res)} hideNavBar />
+      <Scene key="login" component={Login} hideNavBar login={()=>props.login()}/>
     </Stack>
   </Router>
 )
 
 export const MainPage = props => {
+  return (
+    <Router>
+      <Stack key='root'>
+        { MAIN.map(a => (<Scene key={a.key} component={a.component} hideNavBar />))}
+        <Scene key="settings" component={Settings} hideNavBar logout={()=>props.logout()}/>
 
-  return(
-  <Router>
-    <Stack key='root'>
-    { MAIN.map(a => (<Scene key={a.key} component={a.component} hideNavBar />))}
-    </Stack>
-  </Router>)
+      </Stack>
+    </Router>
+  )
 }

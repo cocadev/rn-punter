@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
 import { Actions } from 'react-native-router-flux';
@@ -10,6 +10,7 @@ import CheckBox from 'react-native-check-box';
 import styles from '../Config/styles';
 import ValidateService from '../Config/validate';
 import axios from 'axios';
+import Cache from '../Config/cache';
 
 export default class Login extends Component {
 
@@ -39,24 +40,36 @@ export default class Login extends Component {
     axios.post(`${SERVICE_API_URL}json/data_login.php`,
       { username, password })
       .then(res => {
-        if(res.data.result){
+        var result = res.data;
+        if (result.result) {
           showMessage({
             message: "Login Success",
             description: "Success",
             type: "success",
             icon: 'success'
           });
+          this._retrieveData(result.token)
         }
       })
-      .catch(e=>console.log('err', e))
+      .catch(e => console.log('err', e))
   }
+
+  _retrieveData = async (x) => {
+    try {
+      const token = await AsyncStorage.setItem('TOKEN', x);
+      Cache.ACCESS_TOKEN = token;
+      this.props.login();
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   render() {
     return (
-      <KeyboardAvoidingView 
-        behavior="padding" 
-        enabled 
-        keyboardVerticalOffset={p(30)} 
+      <KeyboardAvoidingView
+        behavior="padding"
+        enabled
+        keyboardVerticalOffset={p(30)}
         style={styles.container}
       >
 
