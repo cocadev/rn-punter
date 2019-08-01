@@ -11,17 +11,15 @@ import Login from '../Screens/login';
 import Results from '../Screens/results';
 
 const AUTH = [
+  { key: 'login',          component: Login},
   { key: 'results',        component: Results},
-
   { key: 'trackdetail',    component: TrackDetail},
   { key: 'racetime',       component: RaceTime},
-  { key: 'login',          component: Login},
   { key: 'index',          component: Index},
   { key: 'email',          component: Email},
   { key: 'password',       component: Password},
   { key: 'settings',       component: Settings},
   { key: 'races',          component: Races},
-
 ]
 
 const MAIN = [

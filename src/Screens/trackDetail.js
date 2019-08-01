@@ -3,9 +3,7 @@ import { Text, View, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 import { p } from '../Config/normalize';
-import FlashMessage, { showMessage } from "react-native-flash-message";
-
-
+import { showMessage } from "react-native-flash-message";
 import Header from '../Components/Header';
 import styles from '../Config/styles';
 import ValidateService from '../Config/validate';
@@ -80,7 +78,6 @@ export default class TrackDetail extends Component {
             value={this.state.race}
           />
         </View>
-        <FlashMessage position="bottom" />
       </View>
     );
   }

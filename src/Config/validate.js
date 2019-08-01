@@ -11,6 +11,16 @@ class ValidateService {
         
         return description
     }
+
+    static login(username, password) {
+
+        var bug = null;
+
+        if (!password) { bug = 'Password should not be null'}
+        if (!username) { bug = 'Username should not be null' }
+        
+        return bug
+    }
 }
 
 export default ValidateService

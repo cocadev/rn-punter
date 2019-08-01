@@ -89,7 +89,7 @@ export default class Router extends PureComponent {
                 style={{ flex: 1 }}>
 
                 <MyStatusBar backgroundColor="#2699FB" barStyle="light-content" />
-                {fontLoaded == true ? (
+                { fontLoaded == true ? (
                     authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)} />
                 )
                 : <Image source={images.splash} style={{ width, height }} />}
