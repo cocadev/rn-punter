@@ -1,0 +1,5 @@
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+export const SERVICE_API_URL = 'http://192.168.1.19/'

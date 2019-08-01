@@ -11,6 +11,7 @@ import Login from '../Screens/login';
 import Results from '../Screens/results';
 
 const AUTH = [
+  { key: 'results',        component: Results},
 
   { key: 'trackdetail',    component: TrackDetail},
   { key: 'racetime',       component: RaceTime},
@@ -20,7 +21,6 @@ const AUTH = [
   { key: 'password',       component: Password},
   { key: 'settings',       component: Settings},
   { key: 'races',          component: Races},
-  { key: 'results',        component: Results},
 
 ]
 
