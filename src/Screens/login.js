@@ -35,8 +35,7 @@ export default class Login extends Component {
         icon: 'danger'
       });
     } else {
-      axios.post(`${SERVICE_API_URL}json/data_login.php`,
-      { username, password })
+      axios.post(`${SERVICE_API_URL}json/data_login.php`,{ username, password })
       .then(res => {
         var result = res.data;
         if (result.result) {
@@ -56,7 +55,7 @@ export default class Login extends Component {
           });
         }
       })
-      .catch(e => console.log('err', e))
+      .catch(e => console.log('errsssssssssssssssssssssssss', e))
     }
   }
 

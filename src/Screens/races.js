@@ -16,9 +16,6 @@ const options = [
   'Special',
   'Best Bet',
   'Eachway',
-  'Place Bet',
-  'MyPunter App',
-  'First 4 Flexi',
   'First 2',
   'First 3',
   'First 4',
@@ -50,6 +47,7 @@ export default class Races extends Component {
         no3: "0",
         no4: "0",
         no5: "0",
+        odds: "",
         name: "",
         legend: "1"
       })
@@ -116,9 +114,15 @@ export default class Races extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.normalText}>Odds</Text>
-            <View style={[style.box2, { marginRight: 0 }]}>
-              <Text style={style.title}>{(parseInt(item.no1) + parseInt(item.no2) + parseInt(item.no3) + parseInt(item.no4) + parseInt(item.no5)) / 5}</Text>
-            </View>
+            <TextInput
+                style={style.box2}
+                onChangeText={(odds) => {
+                  let newArrayOdds = [...this.state.myRaces];
+                  newArrayOdds[index]['odds'] = odds;
+                  this.setState({ myRaces: newArrayOdds });
+                }}
+                keyboardType={'numeric'}
+              />
           </View>
         </View>
 
@@ -160,7 +164,7 @@ export default class Races extends Component {
         </View>
 
       </View>
-    </View>
+    </View> 
   )
 
   handlePress = index => {
@@ -243,7 +247,9 @@ const style = StyleSheet.create({
     paddingLeft: p(14),
     justifyContent: 'center',
     borderColor: '#2699FB',
-    borderWidth: 1
+    borderWidth: 1,
+    fontSize: p(13),
+    color: '#2699FB',
   },
   title: {
     color: '#2699FB',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet, ScrollView, Dimensions, Image } from 'react-native';
+import { Text, View, FlatList, StyleSheet, ScrollView, Dimensions, Image, ActivityIndicator } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { p } from '../Config/normalize';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -8,7 +8,7 @@ import Cache from '../Config/cache';
 import ViewShot from 'react-native-view-shot';
 import Header from '../Components/Header';
 import axios from 'axios';
-import { colors, Tcolors } from '../Config/config';
+import { colors, Tcolors, myResults } from '../Config/config';
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
@@ -22,6 +22,7 @@ export default class Results extends Component {
       res: null,
       hidden: true,
       img: null,
+      isWaiting: false,
       options: {
         format: "jpg",
         quality: 1
@@ -40,11 +41,11 @@ export default class Results extends Component {
       <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[item.legend] }]}>
         <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{item.no1}</Text>
       </View>
-      <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[item.legend == 8 ? item.legend : 1] }]}>
-        <Text style={[styles.itemText, { color: Tcolors[item.legend == 8 && item.legend] }]}>{item.no2}</Text>
+      <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[(item.legend == 8 || item.legend == 7 || item.legend == 6) ? item.legend : 1] }]}>
+        <Text style={[styles.itemText, { color: Tcolors[(item.legend == 8 || item.legend == 7 || item.legend == 6) && item.legend] }]}>{item.no2}</Text>
       </View>
-      <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[item.legend == 8 ? item.legend : 1] }]}>
-        <Text style={[styles.itemText, { color: Tcolors[item.legend == 8 && item.legend] }]}>{item.no3}</Text>
+      <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[(item.legend == 8 || item.legend == 7) ? item.legend : 1] }]}>
+        <Text style={[styles.itemText, { color: Tcolors[(item.legend == 8 || item.legend == 7) && item.legend] }]}>{item.no3}</Text>
       </View>
       <View style={[index == 0 ? styles.item2 : styles.item, { backgroundColor: colors[item.legend == 8 ? item.legend : 1] }]}>
         <Text style={[styles.itemText, { color: Tcolors[item.legend == 8 && item.legend] }]}>{item.no4}</Text>
@@ -63,7 +64,7 @@ export default class Results extends Component {
   )
 
   imageContainer() {
-    const myResults = this.props.results;
+    // const myResults = this.props.results;
     return (
         <ScrollView horizontal style={{ marginTop: height }} >
           <ViewShot
@@ -112,6 +113,7 @@ export default class Results extends Component {
   }
 
   captureViewShoot = async () => {
+    this.setState({ isWaiting : true})
     let that = this;
     this.refs.full.capture().then(async uri => {
 
@@ -127,9 +129,10 @@ export default class Results extends Component {
       axios.post(SERVICE_API_URL + "json/upload_image.php", formData, { headers: headers })
         .then(function (response) {
           console.log('** good **', response.data)
-          that.setState({ img: response.data})
+          that.setState({ img: response.data, isWaiting: false })
         })
         .catch(function (error) {
+          this.setState({ isWaiting : false})
           console.log('** error **', error)
         });
 
@@ -137,7 +140,7 @@ export default class Results extends Component {
   }
 
   render() {
-    const { img } = this.state
+    const { img, isWaiting } = this.state
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -158,6 +161,8 @@ export default class Results extends Component {
         </TouchableOpacity>
 
         { img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'}/>}
+
+        { isWaiting && <ActivityIndicator size={p (30)} color={'#2699FB'} style={{ alignSelf: 'center'}}/>}
 
         {this.imageContainer()}
 

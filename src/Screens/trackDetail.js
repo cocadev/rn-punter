@@ -12,10 +12,10 @@ import Cache from '../Config/cache';
 export default class TrackDetail extends Component {
 
   state = {
-    meeting: "",
-    track: "",
-    rail: "",
-    race: null,
+    meeting: "VD",
+    track: "EW",
+    rail: "BE",
+    race: "3",
   }
 
   validate=()=>{
