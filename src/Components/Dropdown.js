@@ -21,6 +21,9 @@ export default class Dropdown extends Component {
     _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
     _handleDatePicked = (date) => {
+
+
+
         this.setState({ r_date: UtilService.getTime(date) });
         this._hideDateTimePicker();
         this.props.onClick(UtilService.getTime(date))
@@ -44,10 +47,10 @@ export default class Dropdown extends Component {
 
         const off = parseInt(new Date().getTimezoneOffset()/60);
         const t = parseInt(this.props.time.substring(0, 2))+off ;
-        const hour = t>24 ? t-24: t;
+        const hour = t>24 ? t-24: (t<0?t+24:t);
         const minute = this.props.time.substring(3, 5)
 
-        console.log('h=', hour, 'm=', minute, 'off=', off)
+        // console.log('h=', hour, 'm=', minute, 'off=', off)
 
         return (
             <View style={style.itemView}>
@@ -72,8 +75,7 @@ export default class Dropdown extends Component {
                     onCancel={this._hideDateTimePicker}
                     is24Hour={true}
                     mode={'time'}
-                    date={new Date(`2011-04-11T${UtilService.padWithZero(hour)}:${minute}`)}   
-                    
+                    date={new Date(`1970-04-11T${UtilService.padWithZero(hour)}:${minute}`)}   
                 />
 
             </View>

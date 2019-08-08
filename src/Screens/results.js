@@ -8,7 +8,7 @@ import Cache from '../Config/cache';
 import ViewShot from 'react-native-view-shot';
 import Header from '../Components/Header';
 import axios from 'axios';
-import { colors, Tcolors, myResults } from '../Config/config';
+import { colors, Tcolors } from '../Config/config';
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
@@ -57,63 +57,63 @@ export default class Results extends Component {
         <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{item.name}</Text>
       </View>
       <View style={[index == 0 ? styles.item2 : styles.item, { width: 120, backgroundColor: colors[item.legend] }]}>
-        <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{(parseInt(item.no1) + parseInt(item.no2) + parseInt(item.no3) + parseInt(item.no4) + parseInt(item.no5)) / 5}</Text>
+        <Text style={[styles.itemText, { color: Tcolors[item.legend] }]}>{item.odds}</Text>
       </View>
 
     </View>
   )
 
   imageContainer() {
-    // const myResults = this.props.results;
+    const myResults = this.props.results;
     return (
-        <ScrollView horizontal style={{ marginTop: height }} >
-          <ViewShot
-            style={{ height: 176 + (myResults.length * 58) }}
-            ref="full"
-            options={{ format: this.state.options.format, quality: this.state.options.quality }}
-          >
-            <View>
-              <View style={{ flexDirection: 'row', }}>
-                <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, borderTopWidth: 2, width: 120, backgroundColor: '#a6a6a6' }]}>
-                  <Text style={[styles.itemText, { color: '#fff' }]}>{'START'}</Text>
-                </View>
-                <View style={[styles.item, { width: 876, borderBottomWidth: 0, borderTopWidth: 2, alignItems: 'flex-start', paddingLeft: 10, backgroundColor: '#d9d9d9' }]}>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left' }]}>{Cache.Meeting + ' : Track '+ Cache.Track +' - ' + Cache.Rail}</Text>
-                </View>
+      <ScrollView horizontal style={{ marginTop: height }} >
+        <ViewShot
+          style={{ height: 176 + (myResults.length * 58) }}
+          ref="full"
+          options={{ format: this.state.options.format, quality: this.state.options.quality }}
+        >
+          <View>
+            <View style={{ flexDirection: 'row', }}>
+              <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, borderTopWidth: 2, width: 120, backgroundColor: '#a6a6a6' }]}>
+                <Text style={[styles.itemText, { color: '#fff' }]}>{'START'}</Text>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, width: 120, backgroundColor: '#a6a6a6' }]}>
-                  <Text style={[styles.itemText, { color: '#fff' }]}>{'TIME'}</Text>
-                </View>
-                <View style={[styles.item, { width: 876, borderBottomWidth: 0, justifyContent: 'flex-start', flexDirection: 'row', backgroundColor: '#d9d9d9' }]}>
-                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Tipster}</Text>
-                  <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Aff}</Text>
-                </View>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, width: 120, backgroundColor: '#a6a6a6' }]}>
-                  <Text style={[styles.itemText, { color: '#fff' }]}>{'AEST'}</Text>
-                </View>
-                <View style={[styles.item, { width: 876, borderBottomWidth: 0, justifyContent: 'flex-start', flexDirection: 'row', paddingLeft: 10, backgroundColor: '#d9d9d9' }]}>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 76 }]}>{'Race'}</Text>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 410 }]}>{'Selections'}</Text>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left', flex: 1 }]}>{'THE HAMMER\'s Tips'}</Text>
-                  <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 70 }]}>{'Odds'}</Text>
-                </View>
+              <View style={[styles.item, { width: 876, borderBottomWidth: 0, borderTopWidth: 2, alignItems: 'flex-start', paddingLeft: 10, backgroundColor: '#d9d9d9' }]}>
+                <Text style={[styles.itemText, { color: '#111', textAlign: 'left' }]}>{Cache.Meeting + ' : Track ' + Cache.Track + ' - ' + Cache.Rail}</Text>
               </View>
             </View>
-            <FlatList
-              data={myResults}
-              keyExtractor={(item, i) => String(i)}
-              renderItem={this._renderItem}
-            />
-          </ViewShot>
-        </ScrollView>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, width: 120, backgroundColor: '#a6a6a6' }]}>
+                <Text style={[styles.itemText, { color: '#fff' }]}>{'TIME'}</Text>
+              </View>
+              <View style={[styles.item, { width: 876, borderBottomWidth: 0, justifyContent: 'flex-start', flexDirection: 'row', backgroundColor: '#d9d9d9' }]}>
+                <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Tipster}</Text>
+                <Text style={[styles.itemText, { color: '#111', flex: 1 }]}>{Cache.Aff}</Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={[styles.item, { borderLeftWidth: 2, borderBottomWidth: 0, width: 120, backgroundColor: '#a6a6a6' }]}>
+                <Text style={[styles.itemText, { color: '#fff' }]}>{'AEST'}</Text>
+              </View>
+              <View style={[styles.item, { width: 876, borderBottomWidth: 0, justifyContent: 'flex-start', flexDirection: 'row', paddingLeft: 10, backgroundColor: '#d9d9d9' }]}>
+                <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 76 }]}>{'Race'}</Text>
+                <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 410 }]}>{'Selections'}</Text>
+                <Text style={[styles.itemText, { color: '#111', textAlign: 'left', flex: 1 }]}>{'THE HAMMER\'s Tips'}</Text>
+                <Text style={[styles.itemText, { color: '#111', textAlign: 'left', width: 70 }]}>{'Odds'}</Text>
+              </View>
+            </View>
+          </View>
+          <FlatList
+            data={myResults}
+            keyExtractor={(item, i) => String(i)}
+            renderItem={this._renderItem}
+          />
+        </ViewShot>
+      </ScrollView>
     )
   }
 
   captureViewShoot = async () => {
-    this.setState({ isWaiting : true})
+    this.setState({ isWaiting: true })
     let that = this;
     this.refs.full.capture().then(async uri => {
 
@@ -132,11 +132,30 @@ export default class Results extends Component {
           that.setState({ img: response.data, isWaiting: false })
         })
         .catch(function (error) {
-          this.setState({ isWaiting : false})
+          that.setState({ isWaiting: false })
           console.log('** error **', error)
         });
 
     });
+  }
+
+  dataPost() {
+    this.setState({ isWaiting: true })
+    let that = this;
+
+    var post_title = 'Nortom and Rubic';
+    var post_date = '2018-08-10';
+    var post_image = this.state.img.substring(27);
+
+    axios.post(SERVICE_API_URL + "json/add_post.php",{ post_title, post_date, post_image })
+      .then(function (response) {
+        console.log('** success post**', response.data)
+        that.setState({ img: response.data, isWaiting: false })
+      })
+      .catch(function (error) {
+        that.setState({ isWaiting: false })
+        console.log('** fail post **', error)
+      });
   }
 
   render() {
@@ -155,16 +174,30 @@ export default class Results extends Component {
 
         <TouchableOpacity
           onPress={async () => await this.captureViewShoot()}
-          style={{ marginVertical: p(15), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
+          style={{ marginVertical: p(15), width: p(150), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
         >
           <Text style={{ fontSize: p(15) }}>View Result</Text>
         </TouchableOpacity>
 
-        { img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'}/>}
+        {img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'} />}
 
-        { isWaiting && <ActivityIndicator size={p (30)} color={'#2699FB'} style={{ alignSelf: 'center'}}/>}
+        {isWaiting && <ActivityIndicator size={p(30)} color={'#2699FB'} style={{ alignSelf: 'center' }} />}
+
+        {
+          img && img.substring(0, 4) === 'http' &&
+          <TouchableOpacity
+            onPress={async () => this.dataPost()}
+            style={{ marginTop: p(5), width: p(150), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
+          >
+            <Text style={{ fontSize: p(15) }}>Post</Text>
+          </TouchableOpacity>
+        }
+
+
 
         {this.imageContainer()}
+
+
 
       </View>
     );

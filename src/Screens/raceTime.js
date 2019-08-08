@@ -42,16 +42,15 @@ export default class RaceTime extends Component {
     this.onAutoFilling()
   }
 
-  onAutoFilling() {
-    this.setState({
-      times: null
-    })
+  async onAutoFilling() {
+    this.setState({ times: null })
     let times = [];
 
     for (let i = 1; i <= this.props.count; i++) {
       times.push({ id: i, time: UtilService.divideTime(this.state.default_time + (i - 1) * this.state.time_size) })
     }
-    this.setState({ times })
+    // console.log('********************** auto filling ***********************', times)
+     times.length == this.props.count && this.setState({ times })
   }
 
   reFilling(index) {
@@ -71,6 +70,9 @@ export default class RaceTime extends Component {
   }
 
   onUpdate = (time, index) => {
+
+    // console.log('~my~time~', time, '=index=', index)
+
     let hour = parseInt(time.substring(0, 2));
     let mins = parseInt(time.substring(3, 5));
     let hour_mins = hour * 60 + mins;
@@ -83,6 +85,8 @@ export default class RaceTime extends Component {
   render() {
 
     const { selected, times, isOn } = this.state;
+
+    // console.log('************ my results ***************', this.state.times)
 
     return (
       <View style={styles.container}>
