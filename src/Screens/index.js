@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
@@ -39,7 +39,12 @@ export default class Index extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+      <KeyboardAvoidingView 
+        behavior="padding" 
+        enabled 
+        style={styles.container} 
+        keyboardVerticalOffset={Platform.select({ios: p(80), android: p(50)})}
+      >
         <View style={style.header}>
           <Text style={styles.headText}>MYPUNTER TIPS & SELECTIONS</Text>
           <MaterialCommunityIcons onPress={() => Actions.settings()} name="settings" color={'#fff'} size={p(22)} style={{ position: 'absolute', right: p(15) }} />

@@ -49,9 +49,9 @@ export default class Router extends PureComponent {
 
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : null}
-                style={{ flex: 1 }}>
-
+                behavior={Platform.OS === 'ios' ? 'padding' : null} enabled
+                style={{ flex: 1 }}
+            >
                 <MyStatusBar backgroundColor="#2699FB" barStyle="light-content" />
                 {
                     authed == 0

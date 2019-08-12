@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet, ScrollView, Dimensions, Image, ActivityIndicator } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { p } from '../Config/normalize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SERVICE_API_URL } from '../Config/config';
-import Cache from '../Config/cache';
-import ViewShot from 'react-native-view-shot';
-import Header from '../Components/Header';
-import axios from 'axios';
-import { colors, Tcolors } from '../Config/config';
+import React, { Component } from 'react'
+import { Text, View, FlatList, TextInput, StyleSheet, ScrollView, Dimensions, Image, ActivityIndicator } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { p } from '../Config/normalize'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { SERVICE_API_URL } from '../Config/config'
+import { colors, Tcolors } from '../Config/config'
+import { myResults } from "../Config/config"
+import { showMessage } from "react-native-flash-message"
+import Cache from '../Config/cache'
+import ViewShot from 'react-native-view-shot'
+import Header from '../Components/Header'
+import axios from 'axios'
+import DateTimePicker from "react-native-modal-datetime-picker"
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
@@ -21,14 +24,34 @@ export default class Results extends Component {
       error: null,
       res: null,
       hidden: true,
+      title: 'Test',
       img: null,
       isWaiting: false,
       options: {
         format: "jpg",
         quality: 1
-      }
+      },
+      mydate: new Date().toISOString().substring(0, 10),
+      isDateTimePickerVisible: false
     }
   }
+
+  async componentDidMount(){
+    await this.captureViewShoot()
+  }
+
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+  handleDatePicked = date => {
+    this.setState({ mydate: date.toISOString().substring(0, 10) })
+    this.hideDateTimePicker();
+  };
 
   _renderItem = ({ item, index }) => (
     <View style={{ flexDirection: 'row' }}>
@@ -64,7 +87,7 @@ export default class Results extends Component {
   )
 
   imageContainer() {
-    const myResults = this.props.results;
+    // const myResults = this.props.results;
     return (
       <ScrollView horizontal style={{ marginTop: height }} >
         <ViewShot
@@ -143,14 +166,20 @@ export default class Results extends Component {
     this.setState({ isWaiting: true })
     let that = this;
 
-    var post_title = 'Nortom and Rubic';
-    var post_date = '2018-08-10';
-    var post_image = this.state.img.substring(27);
+    var post_title = this.state.title;
+    var post_date = this.state.mydate;
+    var post_image = this.state.img && this.state.img.substring(27);
 
-    axios.post(SERVICE_API_URL + "json/add_post.php",{ post_title, post_date, post_image })
+    axios.post(SERVICE_API_URL + "json/add_post.php", { post_title, post_date, post_image })
       .then(function (response) {
         console.log('** success post**', response.data)
-        that.setState({ img: response.data, isWaiting: false })
+        that.setState({ isWaiting: false })
+        showMessage({
+          message: "Success",
+          description: "Posted!",
+          type: "success",
+          icon: 'success'
+        });
       })
       .catch(function (error) {
         that.setState({ isWaiting: false })
@@ -159,7 +188,9 @@ export default class Results extends Component {
   }
 
   render() {
-    const { img, isWaiting } = this.state
+
+    const { img, isWaiting, mydate } = this.state;
+
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -172,31 +203,51 @@ export default class Results extends Component {
             />)}
         />
 
-        <TouchableOpacity
-          onPress={async () => await this.captureViewShoot()}
-          style={{ marginVertical: p(15), width: p(150), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
-        >
-          <Text style={{ fontSize: p(15) }}>View Result</Text>
-        </TouchableOpacity>
+        <View style={{ marginTop: p(22), marginHorizontal: p(16) }}>
+          <Text style={styles.titleText}>Title</Text>
 
-        {img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'} />}
+          <TextInput
+            style={styles.textInput}
+            placeholder={'POST TITLE'}
+            onChangeText={(title) => this.setState({ title })}
+            value={this.state.title}
+          />
 
-        {isWaiting && <ActivityIndicator size={p(30)} color={'#2699FB'} style={{ alignSelf: 'center' }} />}
+          <Text style={styles.titleText}>Title</Text>
 
-        {
-          img && img.substring(0, 4) === 'http' &&
-          <TouchableOpacity
-            onPress={async () => this.dataPost()}
-            style={{ marginTop: p(5), width: p(150), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey' }}
+          <TouchableOpacity 
+              style={styles.textInput} 
+              onPress={this.showDateTimePicker}
           >
-            <Text style={{ fontSize: p(15) }}>Post</Text>
+            <Text style={{ fontSize: p(15), color: '#2699FB',}}>{mydate}</Text>
           </TouchableOpacity>
-        }
 
+          <Text style={styles.titleText}>Post Image</Text>
 
+          {img && <Image source={{ uri: img }} style={styles.img} resizeMode={'contain'} />}
 
-        {this.imageContainer()}
+          {isWaiting && <ActivityIndicator size={p(30)} color={'#2699FB'} style={{ alignSelf: 'center' }} />}
 
+          {
+            img && img.substring(0, 4) === 'http' &&
+            <TouchableOpacity
+              onPress={async () => this.dataPost()}
+              style={{ marginTop: p(5), width: p(150), alignSelf: 'center', padding: p(12), borderWidth: 2, borderColor: 'grey', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <Text style={{ fontSize: p(15) }}>Post</Text>
+            </TouchableOpacity>
+          }
+
+          <DateTimePicker
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this.handleDatePicked}
+            onCancel={this.hideDateTimePicker}
+            mode={'date'}
+          />
+
+          {this.imageContainer()}
+
+        </View>
 
 
       </View>
@@ -235,9 +286,23 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   img: {
-    margin: p(12),
-    width: width - p(24),
+    // margin: p(12),
+    width: width - p(32),
     height: p(240)
-  }
+  },
+  titleText: {
+    fontSize: p(17),
+    marginTop: p(8),
+    color: '#2699FB',
+  },
+  textInput: {
+    height: p(46),
+    marginVertical: p(9),
+    padding: p(12),
+    fontSize: p(15),
+    color: '#2699FB',
+    borderColor: '#2699FB',
+    borderWidth: 1
+  },
 })
 

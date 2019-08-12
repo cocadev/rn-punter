@@ -16,15 +16,17 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: 'white',
     },
+    noteText: {
+        fontSize: p(18),
+        color: '#2699FB',
+    },
+    
     titleText: {
         fontSize: p(17),
         marginTop: p(8),
         color: '#2699FB',
     },
-    noteText: {
-        fontSize: p(18),
-        color: '#2699FB',
-    },
+    
     textInput:{
         height: p(46), 
         marginVertical: p(9),
