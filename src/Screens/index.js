@@ -15,8 +15,8 @@ export default class Index extends Component {
   constructor() {
     super();
     this.state = {
-      tipster: 'AAA',
-      aff: 'XXX'
+      tipster: '',
+      aff: ''
     }
   }
 

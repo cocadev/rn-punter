@@ -11,13 +11,14 @@ import Login from '../Screens/login';
 import Results from '../Screens/results';
 
 const MAIN = [
-  { key: 'results', component: Results },
   { key: 'index', component: Index },
   { key: 'trackdetail', component: TrackDetail },
   { key: 'racetime', component: RaceTime },
   { key: 'email', component: Email },
   { key: 'password', component: Password },
   { key: 'races', component: Races },
+  { key: 'results', component: Results },
+
 ]
 
 export const AuthPage = props => (

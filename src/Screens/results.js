@@ -5,7 +5,7 @@ import { p } from '../Config/normalize'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { SERVICE_API_URL } from '../Config/config'
 import { colors, Tcolors } from '../Config/config'
-import { myResults } from "../Config/config"
+// import { myResults } from "../Config/config"
 import { showMessage } from "react-native-flash-message"
 import Cache from '../Config/cache'
 import ViewShot from 'react-native-view-shot'
@@ -87,7 +87,7 @@ export default class Results extends Component {
   )
 
   imageContainer() {
-    // const myResults = this.props.results;
+    const myResults = this.props.results;
     return (
       <ScrollView horizontal style={{ marginTop: height }} >
         <ViewShot
@@ -198,7 +198,7 @@ export default class Results extends Component {
           rightElement={(
             <MaterialCommunityIcons
               name="knife-military"
-              color={'#fff'}
+              color={'#2699FB'}
               size={p(24)}
             />)}
         />
@@ -207,7 +207,7 @@ export default class Results extends Component {
           <Text style={styles.titleText}>Title</Text>
 
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, { color: '#111'}]}
             placeholder={'POST TITLE'}
             onChangeText={(title) => this.setState({ title })}
             value={this.state.title}
@@ -216,8 +216,8 @@ export default class Results extends Component {
           <Text style={styles.titleText}>Title</Text>
 
           <TouchableOpacity 
-              style={styles.textInput} 
-              onPress={this.showDateTimePicker}
+            style={[styles.textInput, { color: '#111'}]}
+            onPress={this.showDateTimePicker}
           >
             <Text style={{ fontSize: p(15), color: '#2699FB',}}>{mydate}</Text>
           </TouchableOpacity>
