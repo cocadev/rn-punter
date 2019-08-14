@@ -53,13 +53,13 @@ export default class Router extends PureComponent {
                 style={{ flex: 1 }}
             >
                 <MyStatusBar backgroundColor="#2699FB" barStyle="light-content" />
-                {
+                  {
                     authed == 0
                         ? (<Image source={images.splash} style={{ width, height}}/>)
                         : (authed == 2
                             ? <ROUTER.MainPage logout={()=>this.setState({ authed: 1 })}/>
                             : <ROUTER.AuthPage login={()=>this.setState({ authed: 2 })}/>)
-                }
+                  }
                 <FlashMessage position={{ bottom: p(0) }} />
             </KeyboardAvoidingView>
         );

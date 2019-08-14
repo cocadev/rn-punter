@@ -40,10 +40,10 @@ export default class Index extends Component {
   render() {
     return (
       <KeyboardAvoidingView 
-        behavior="padding" 
-        enabled 
+        behavior={Platform.OS === 'ios' ? null : 'padding'} 
+        enabled
         style={styles.container} 
-        keyboardVerticalOffset={Platform.select({ios: p(80), android: p(50)})}
+        keyboardVerticalOffset={p(50)}
       >
         <View style={style.header}>
           <Text style={styles.headText}>MYPUNTER TIPS & SELECTIONS</Text>

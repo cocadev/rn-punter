@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, KeyboardAvoidingView, AsyncStorage, Platform } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { images } from '../Config/images';
 import { showMessage } from "react-native-flash-message";
@@ -72,16 +72,17 @@ export default class Login extends Component {
   render() {
     return (
       <KeyboardAvoidingView
-        behavior="padding"
+        behavior={Platform.OS === 'ios' ? null : 'padding'} 
         enabled
         keyboardVerticalOffset={p(30)}
         style={styles.container}
       >
 
-        <ScrollView style={{ flex: 1 }}>
           <View style={{ alignItems: 'center', marginTop: p(50), marginBottom: p(20) }}>
             <Image source={images.main} style={{ width: p(225), height: p(111) }} />
           </View>
+
+          <ScrollView style={{ flex: 1}}>
 
           <Text style={style.titleText}>Tipsters Login</Text>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, FlatList, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { p } from '../Config/normalize';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
@@ -181,7 +181,7 @@ export default class Races extends Component {
 
     return (
       <KeyboardAvoidingView
-        behavior="padding"
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
         enabled
         keyboardVerticalOffset={p(20)}
         style={styles.container}
