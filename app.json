@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "mypunter-12",
-    "slug": "mypunter-12",
+    "name": "punter",
+    "slug": "punter",
     "privacy": "public",
-    "sdkVersion": "33.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,11 +24,11 @@
       "**/*"
     ],
     "android": {
-      "package": "com.punter.wangharry"
+      "package": "com.punter.eugene"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.punter.wangharry"
+      "bundleIdentifier": "com.punter.eugene"
     },
     "description": ""
   }
