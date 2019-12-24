@@ -60,7 +60,7 @@ export default class Router extends PureComponent {
                             ? <ROUTER.MainPage logout={()=>this.setState({ authed: 1 })}/>
                             : <ROUTER.AuthPage login={()=>this.setState({ authed: 2 })}/>)
                   }
-                <FlashMessage position={{ bottom: p(0) }} />
+                <FlashMessage position={{ bottom: 0 }} />
             </KeyboardAvoidingView>
         );
     }
@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        backgroundColor: '#2699FB',
+        backgroundColor: '#2699FC',
     },
 });
