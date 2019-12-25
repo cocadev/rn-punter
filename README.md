@@ -1,4 +1,4 @@
-<h1 align="center"><b> Punter App </b> </h1>
+<h1 align="center"><b> Punter React-Native App </b> </h1>
 
 <h1 align="center">
   <br>
