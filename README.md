@@ -1,4 +1,4 @@
-<h1 align="center"><b> Punter React-Native App </b> </h1>
+<h1 align="center"><b> React-Native App for Punters </b> </h1>
 
 <p align="center">A minimal, clean and beautiful mobile app to help people find the jobs to book and change the world.</p>
 
